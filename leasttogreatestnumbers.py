@@ -16,10 +16,11 @@ print(userlist)
 if (userlist == numberslist):
 	print("Winner")
 
-from random import randint
+from random import randint, choice
+divisorlist = [10, 100, 1000]
 numberslist = []
 while len(numberslist) < randint(5,10):
-	addnumber = randint(1,99)/100
+	addnumber = randint(1,99)/choice(divisorlist)
 	if addnumber not in numberslist:		
 		numberslist.append(addnumber)	
 numberslist.sort()
