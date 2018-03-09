@@ -45,3 +45,18 @@ now = datetime.datetime.today()
 print(now) #print 2017-11-30 18:12:51.894033
 print(type(now)) #print <class 'datetime.datetime'>
 print((now-cstring).days) #print 3850
+
+#from codecademy #2 Strings & Console Output
+from datetime import datetime
+print(datetime.now()) #print current datetime such as 2017-07-21 18:35:41.046993
+print(datetime.now().year) #print 2017
+print(datetime.now().month) #print 7
+print(datetime.now().day) #print 21
+now = datetime.now()
+print(now) #print 2017-07-21 18:42:19.619062
+print(now.year) #print 2017
+print(now.month) #print 7
+print(now.day) #print 21
+print("%s/%s/%s" % (now.month, now.day, now.year)) #print 7/24/2017
+print("%s:%s:%s" % (now.hour, now.minute, now.second)) #print 11:59:39
+print("%s/%s/%s %s:%s:%s" % (now.month, now.day, now.year, now.hour, now.minute, now.second)) #print 7/24/2017 12:1:49
