@@ -86,6 +86,34 @@ for eachnumber in range(1,11):
 	else:
 		print(eachnumber,nnumber,"is the last number in for loop eachnumber with the for loop nnumber.  There is no match for eachnumber and nnumber",nnumber,"else")
 print("\n")
+fruits = ['banana', 'apple', 'tomato', 'orange', 'pear', 'grape']
+for eachfruits in fruits:
+	if eachfruits == "tomato":
+		print(eachfruits+" is not a fruit.  It actually is a fruit")
+		break
+	else:
+		print(eachfruits)
+else:
+	print("A fine selection of fruits!")  #not printed because tomato broke the for eachfruits in fruits
+print("\n")
+fruits = ['banana', 'apple', 'orange', 'pear', 'grape']
+for eachfruits in fruits:
+	if eachfruits == "tomato":
+		print(eachfruits+" is not a fruit.  It actually is a fruit")
+		break
+	else:
+		print(eachfruits)
+else:
+	print("A fine selection of fruits!")  #printed because for loop successfull looped all fruits
+print("\n")
+fruits = ['banana', 'apple', 'tomato', 'orange', 'pear', 'grape']
+for eachfruits in fruits:
+	if eachfruits == "tomato":
+		print(eachfruits+" is not a fruit.  It actually is a fruit")
+		break
+	else:
+		print(eachfruits)
+print("A fine selection of fruits!")  #printed because it's the next line after the for eachfruits in fruits loop
 
 #Else while loop
 #If the else statement is used with a while loop, the else statement is executed when the condition becomes false.  If you break out of the loop or if an exception is raised, the else clause is not executed.
