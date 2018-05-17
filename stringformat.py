@@ -60,3 +60,113 @@ for i in range(3,13):
 for i in range(3,13):
 	print("{:6d} {:6d} {:6d}".format(i, i*i, i*i*i)) #print 3 9 27\n . . . 12 144 1728 with six character pad
 #We can also manipulate the alignment of the columns by adding < , ^ , and > for text alignment, change d to f to add decimal places, change field name index numbers, and more to ensure that we are displaying the data as we would like.
+
+#https://pyformat.info/
+#PyFormat: Using % and .format() for great good!
+#Basic formatting.  Simple positional formatting is probably the most common use-case. Use it if the order of your arguments is not likely to change and you only have very few elements you want to concatenate. Since the elements are not represented by something as descriptive as a name this simple style should only be used to format a relatively small number of elements.
+
+print("old: %s %s" % ("one","two")) #print old: one two
+print("new: {} {}" .format("one","two")) #print new: one two
+print("old: %d %d" % (1,2)) #print old: 1 2
+print("new: {} {}" .format(1,2)) #print new: 1 2
+print("old: %d %d" % (2,1)) #print old: 2 1
+print("new: {1} {0}" .format(1,2)) #print new: 1 2
+
+#Value conversion.  The new-style simple formatter calls by default the __format__() method of an object for its representation. If you just want to render the output of str(...) or repr(...) you can use the !s or !r conversion flags.  In %-style you usually use %s for the string representation but there is %r for a repr(...) conversion.
+class Data(object):
+	def __str__(self):
+		return "str"
+	def __repr__(self):
+		return "repr"
+	def __str__(self):
+		return "dodo"
+print("%s" % (Data())) #print dodo
+print("%r" % (Data())) #print repr
+print("%s %r" % (Data(), Data())) #print dodo repr
+print("%s %s" % (Data(), Data())) #print dodo dodo
+print("{0!s}".format(Data())) #print dodo
+print("{0!r}".format(Data())) #print repr
+print("{0!s} {0!r}".format(Data())) #print dodo repr
+print("{0!s} {0!s}".format(Data())) #print dodo dodo
+
+#Padding and aligning strings.  By default values are formatted to take up only as many characters as needed to represent the content. It is however also possible to define that a value should be padded to a specific length. Unfortunately the default alignment differs between old and new style formatting. The old style defaults to right aligned while for new style it's left.  Default is right align for strings, integers, floats.
+print("1234567890")
+print("%10s" % ("Test")) #print       Test  6 padding left of Test for total characters 10.  Align right.
+print("{:>10}" .format("test")) #print       test  6 padding left of test for align right.
+print("%-10s" % ("Test")) #print Test       6 padding right of Test for total characters 10.  Align left.
+print("{:10}" .format("test")) #print test       6 padding right of test for total characters 10.  Align left.
+print("{:_<10}" .format("test")) #print test______ 6 padding right of test for total characters 10.  Align left.
+print("{:_^10}" .format("test")) #print ___test___ centered 3 padding left and 3 padding right of test for total characters 10.  Align center.
+print("{:_^10}" .format("tests")) #print __tests___ centered 2 padding left and 3 padding right of tests for total characters 10.  Align center.
+print("{:_^6}" .format("zip")) #print _zip__ centered 1 padding left and 2 padding right of tests for total characters 10.  Align center.
+print("1234567890")
+
+#Truncate or truncating long strings.  Inverse to padding it is also possible to truncate overly long values to a specific number of characters.
+print("1234567890")
+print("%.5s" % ("xylophone")) #print xylop output 5 characters
+print("{:.5}".format("xylophone")) #print xylop output 5 characters
+
+#combine truncate and padding
+print("{:_>10.5}".format("xylophone")) #print _____xylop right align 5 characters with _____ completing the 10 characters output
+
+#Numbers integers, floats
+print("%d" % (42)) #print 42
+print("{}".format(42)) #print 42
+print("{:d}".format(42)) #print 42
+print("%f" % (3.141592653)) #print 3.141593
+print("{}".format(3.141592653)) #print 3.1415932653
+print("{:f}".format(3.141592653)) #print 3.141593
+print("1234567890")
+print("%4d"%(42)) #print   42 right align
+print("{:4d}".format(42)) #print   42 right align
+print("1234567890")
+print("%6.3f"%(3.141592653589793)) #print  3.142 right align three decimal places with rounding up
+print("{:6.3f}".format(3.141592653589793)) #print  3.142 right align three decimal places with rounding up
+print("%07.3f"%(3.141592653589793)) #print 003.142 right align three decimal places with rounding up
+print("{:07.3f}".format(3.141592653589793)) #print 003.142 right align three decimal places with rounding up
+print("1234567890")
+print("%08d"%(42)) #print 00000042 right align
+print("{:08d}".format(42)) #print 00000042 right align
+print("%+d" % (42)) #print +42
+print("{:+}".format(42)) #print +42
+print("{:+d}".format(42)) #print +42
+print("%-d" % (23)) #print 23
+print("{:-}".format(23)) #print 23
+print("{:-d}".format(23)) #print 23
+print("%d" % (-23)) #print -23
+print("{:}".format(-23)) #print -23
+print("{:d}".format(-23)) #print -23
+print("1234567890")
+print("{:5d}".format(-23)) #print  -23 left align with two spaces
+print("{:=5d}".format(-23)) #print -  23 left align with two spaces between negative and 23
+print("{:+5d}".format(23)) #print   +23 left align with two spaces
+print("{:=+5d}".format(23)) #print +  23 left align with two spaces between positive and 23
+
+#Named placeholders, dictionary, list, class
+data = {"first": "cookies", "last": "popcorn"}
+print("%s %s" % (data["first"], data["last"])) #print cookies popcorn
+print("%(first)s %(last)s" % (data)) #print cookies popcorn
+print("{first} {last}".format(**data)) #print cookies popcorn
+print("{first} {last}".format(first="crackers", last="peanuts")) #print crackers peanuts
+print("{last} {first}".format(first="crackers", last="peanuts")) #print peanuts, crackers
+person = {"first": "Jean-Luc", "last": "Picard"}
+print("{p[first]} {p[last]}".format(p=person)) #print Jean-Luc Picard
+datalist = [4, 8, 15, 16, 23, 42]
+print("{d[4]} {d[5]}".format(d=datalist)) #print 23 42
+class Plant(object):
+	type = "tree"
+print("{p.type}".format(p=Plant())) #print tree
+class Plant2(object):
+	type= "tree"
+	kinds = [{"name":"oak"},{"name":"maple"}]
+print("{p2.type}: {p2.kinds[0][name]}".format(p2=Plant2())) #print tree: oak
+
+#Datetime.  New style formatting also allows objects to control their own rendering. This for example allows datetime objects to be formatted inline.
+#datetime(year, month, date, hour, minute)
+print("{:%Y-%m-%d %H:%M}".format(datetime(2001, 2, 3, 4, 5))) #print 2001-02-03 04:05
+print("{:%m/%d/%y %H:%M}".format(datetime(2001, 2, 3, 4, 5))) #print 02/03/01 04:05
+print("{:%m/%d/%Y %H:%M}".format(datetime(2001, 7, 15, 18, 35))) #print 07/15/2001 18:35
+print("{:%m/%d/%Y %H:%M}".format(datetime(2001, 7, 15, 18, 35))) #print 07/15/2001 18:35
+print("{:%m/%d/%Y %I:%M %p}".format(datetime(2001, 7, 15, 18, 35))) #print 07/15/2001 06:35 PM
+print("{:%m/%d/%y %I:%M%p}".format(datetime(2001, 7, 15, 18, 35))) #print 07/15/01 06:35PM
+print("{:%m/%d/%y %I:%M%p}".format(datetime(2001, 7, 15, 18, 35)).lower()) #print 07/15/01 06:35pm

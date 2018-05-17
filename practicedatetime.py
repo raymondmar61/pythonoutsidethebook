@@ -60,3 +60,18 @@ print(now.day) #print 21
 print("%s/%s/%s" % (now.month, now.day, now.year)) #print 7/24/2017
 print("%s:%s:%s" % (now.hour, now.minute, now.second)) #print 11:59:39
 print("%s/%s/%s %s:%s:%s" % (now.month, now.day, now.year, now.hour, now.minute, now.second)) #print 7/24/2017 12:1:49
+
+#https://stackoverflow.com/questions/31955761/converting-python-string-to-datetime-obj-with-am-pm
+#datetime.strptime() is used for converting a string to a datetime object , when using strptime() you have to specify the correct format in which the date/time in the string exists.
+test = "05/16/18"
+print(datetime.strptime(test, "%m/%d/%y")) #print 2018-05-16 00:00:00
+test2 = "05/16/2018"
+print(datetime.strptime(test2, "%m/%d/%Y")) #print 2018-05-16 00:00:00
+test = "2015-08-12 13:07:32"
+print(datetime.strptime(test, '%Y-%m-%d %H:%M:%S').strftime('%Y-%m-%d %I:%M:%S %p')) #print 2015-08-12 01:07:32 PM
+#https://stackoverflow.com/questions/13855111/how-can-i-convert-24-hour-time-to-12-hour-time
+timetodayam = datetime.strptime("10:30", "%H:%M").strftime("%I:%M %p")
+print(timetodayam) #print 10:30 AM
+timetodaypm = datetime.strptime("22:30", "%H:%M").strftime("%I:%M %p")
+print(timetodaypm) #print 10:30 PM
+print(timetodaypm.lower()) #print 10:30 pm
