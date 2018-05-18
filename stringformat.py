@@ -108,6 +108,7 @@ print("{:.5}".format("xylophone")) #print xylop output 5 characters
 
 #combine truncate and padding
 print("{:_>10.5}".format("xylophone")) #print _____xylop right align 5 characters with _____ completing the 10 characters output
+print("{:_>10.5}".format("xylophone"[::-1])) #print _____enohp right align 5 characters with _____ completing the 10 characters output
 
 #Numbers integers, floats
 print("%d" % (42)) #print 42
@@ -170,3 +171,38 @@ print("{:%m/%d/%Y %H:%M}".format(datetime(2001, 7, 15, 18, 35))) #print 07/15/20
 print("{:%m/%d/%Y %I:%M %p}".format(datetime(2001, 7, 15, 18, 35))) #print 07/15/2001 06:35 PM
 print("{:%m/%d/%y %I:%M%p}".format(datetime(2001, 7, 15, 18, 35))) #print 07/15/01 06:35PM
 print("{:%m/%d/%y %I:%M%p}".format(datetime(2001, 7, 15, 18, 35)).lower()) #print 07/15/01 06:35pm
+
+#Parametrized formats.  new style formatting allows all of the components of the format to be specified dynamically using parametrization. Parametrized formats are nested expressions in braces that can appear anywhere in the parent format after the colon.
+print("1234567890")
+print("{:{align}{width}}".format("test", align="^", width="10")) #print    test
+print("{:_{align}{width}}".format("test", align="^", width="10")) #print ___test___
+print("%.*s = %.*f"%(3, "Gibberish",3,2.7182)) #print Gib = 2.718
+print("{:.{prec}} = {:.{prec}f}".format("Gibberish", 2.7182, prec=3)) #print Gib = 2.718
+print("%*.*f"%(5,2,2.7182)) #print  2.72
+print("{:{width}.{prec}f}".format(2.7182, width=5, prec=2)) #print  2.72
+#print("{:_{width}.{prec}f}".format(2.7182, width=5, prec=2)) #error message ValueError: Invalid format specifier
+print("{:0{width}.{prec}f}".format(2.7182, width=5, prec=2)) #print 02.72
+print("{:{prec}} = {:{prec}}".format("Gibberish", 2.7182, prec=".3")) #print Gib = 2.72
+print("{:{prec}} = {:{prec}}".format("Gibberish", 2.7182, prec=".6")) #print Gibber = 2.7182
+print("{:{prec}} = {:0{width}{prec}}".format("Gibberish", 3.1, prec=".6", width="7")) #print Gibber = 00003.1
+from datetime import datetime
+dt = datetime(2001,3,15,19,30)
+print(dt) #print 2001-03-15 19:30:00
+print("{:{dfmt} {tfmt}}".format(dt, dfmt="%Y-%m-%d", tfmt="%H:%M")) #print 2001-03-15 19:30
+print("{:{dfmt} {tfmt}}".format(dt, dfmt="%m/%d/%Y", tfmt="%H:%M")) #print 03/15/2001 19:30
+print("{:{dfmt} {tfmt}}".format(dt, dfmt="%m/%d/%Y", tfmt="%I:%M%p")) #print 03/15/2001 07:30PM
+#The nested formats can be positional arguments. Position depends on the order of the opening curly braces
+print("{:{}{}{}.{}}".format(2.7182818284,">","+",10,3)) #print      +2.72
+print("{:{}{}{}.{}}".format(2.7182818284,"0>","+",10,3)) #print 00000+2.72
+print("{:{}{}{}.{}}".format(2.7182818284,"0>","+",10,5)) #print 000+2.7183
+print("{:{}{}{}.{}}".format(2.7182818284,"0<","+",10,3)) #print +2.7200000
+#keyword arguments can be added to the mix as before
+print("{:{}{sign}{}.{}}".format(2.7182818284,">",10,3,sign="+")) #print      +2.72
+
+#Custom objects. The datetime example works through the use of the __format__() magic method. You can define custom format handling in your own objects by overriding this method. This gives you complete control over the format syntax used.
+class HAL9000(object):
+	def __format__(self, format):
+		if (format == "open-the-pod-bay-doors"):
+			return "I'm afraid I can't do that."
+		return "HAL 9000"
+print("{:open-the-pod-bay-doors}".format(HAL9000())) #print I'm afraid I can't do that.
