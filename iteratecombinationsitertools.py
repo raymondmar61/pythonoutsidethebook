@@ -61,3 +61,12 @@ listlove = itertools.chain.from_iterable(["ABC","DEF"])
 print(list(map(str,listlove))) #print ['A', 'B', 'C', 'D', 'E', 'F']
 listlove = itertools.chain.from_iterable(["ABC","DEF"])
 print(" ".join(map(str, listlove))) #print A B C D E F
+
+from itertools import combinations
+p = {int((num * ((3 * num) - 1)) / 2) for num in range(1, 10)}
+for x, y in combinations(p, 2):
+	diff = abs(x - y)
+	print(x,y,diff) #print 35 70 35\n 5 70 65\n 22 92 70\n examples
+	_sum = x + y
+	if diff in p and _sum in p:
+		print(diff, _sum, x, y) #print 
