@@ -206,3 +206,14 @@ class HAL9000(object):
 			return "I'm afraid I can't do that."
 		return "HAL 9000"
 print("{:open-the-pod-bay-doors}".format(HAL9000())) #print I'm afraid I can't do that.
+
+#35. Write a Python program to display a number with a comma separator.
+print("{:,}".format(1000000)) #print 1,000,000
+print("{:,}".format(123456789)) #print 123,456,789
+print("{:,}".format(-987654321)) #print -987,654,321
+
+#36. Write a Python program to format a number with a percentage.
+half = 1/2
+print("Percentage: {}%".format(half)) #print Percentage: 0.5%
+third = 1/3
+print("Percentage: {}%".format(third)) #print Percentage: 0.3333333333333333%

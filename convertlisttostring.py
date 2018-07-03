@@ -20,3 +20,4 @@ print("\n")
 integerslist = [80, 443, 8080, 8081]
 print(", ".join(map(str, integerslist))) #print 80, 443, 8080, 8081
 print("\n".join(map(str, integerslist))) #print 80\n 443\n 8080\n 8081
+print("".join(map(str, integerslist))) #print 8044380808081
