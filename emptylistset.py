@@ -89,3 +89,42 @@ isempty(tuplecheck) #print Structure is full
 listempty = []
 if len(listempty) == 0:
 	print("Don't check lists this way") #print Don't check lists this way
+
+#bonus while loop from ch7userinputandwhileloopstaketwo.py Python Crash Course
+active = True
+while active:
+	message = input(prompt3)
+	if message == 'quit':
+		active = False
+	else:
+		print(message)
+promptcities = "Please enter the name of a city you have visited:"
+promptcities += "\n(Enter \"quit\" when you are finished.) "
+while True:
+	city = input(promptcities)
+	if city == "quit":
+		break
+	else:
+		print("Id love to go to " +city.title()+ "!")
+#moving items from one list to another list
+unconfirmedusers = ["Alice","Brian","Candace"]
+confirmedusers = []
+print(unconfirmedusers)
+while unconfirmedusers: #while loop runs unconfirmedusers is not empty
+	verifyinguser = unconfirmedusers.pop()
+	print("Verifying user or moving unconfirmeduser to confirmeruser " +verifyinguser.title())
+	confirmedusers.append(verifyinguser)
+print(confirmedusers)
+#Fill a dictionary with user input
+responses = {}
+pollingactive = True
+while pollingactive:
+	name = input("What is your name? ")
+	mountain = input("Which mountain do you want to climb someday? ")
+	responses[name] = mountain #store name and mountain in responses dictionary
+	repeat = input("Do you want to enter another name? y or n ")
+	if repeat == "n":
+		pollingactive = False
+print(responses)
+for name, mountain in responses.items():
+	print(name+ " wants to climb " +mountain)
