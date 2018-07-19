@@ -111,13 +111,49 @@ print(transpose) #print [[3, 7, 2], [0, 4, 4], [0, 0, 6]]
 transpose = [[row[i] for row in a1 for i in range(0,3)]]
 print(transpose) #print [[3, 0, 0, 7, 4, 0, 2, 4, 6]]
 
-lista = [3, 0, 0, 0]
-listb = [7, 4, 0, 0]
-listc = [2, 4, 6, 0]
-listd = [8, 5, 9, 3]
-#answer = [a+b+c+d for a in lista for b in listb for c in listc for d in listd]
-indexnumber = 0
-answer = [a+b+c+d for a in lista for b in listb for c in listc for d in listd]
-#answer = [(a, b, c, d) for a in lista for b in listb for c in listc for d in listd if a+b+c+d == 25]
-print(answer)
-print(max(answer))
+#3x4 matrix 3 lists length 4
+matrix = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]
+onelist = []
+for i in range(0,3):
+	for j in range(0,3):		
+		print(matrix[i][j]) #print 1\n 2\n 3\n 5\n 6\n 7\n \n 10\n 11
+		onelist.append(matrix[i][j])
+print(onelist) #print [1, 2, 3, 5, 6, 7, 9, 10, 11]
+print([row[i] for row in matrix for i in range(0,3)]) #print [1, 2, 3, 5, 6, 7, 9, 10, 11]
+#3x4 matrix 3 lists length 4
+matrix = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]
+onelist = []
+for i in range(0,3):
+	for j in range(0,4):		
+		print(matrix[i][j]) #print 1\n 2\n 3\n 4\n 5\n 6\n 7\n 8\n 9\n 10\n 11\n 12
+		onelist.append(matrix[i][j])
+print(onelist) #print [1, 2, 3, 5, 6, 7, 9, 10, 11, 12]
+print([row[i] for row in matrix for i in range(0,4)]) #print [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+
+#3x4 matrix 3 lists length 4
+matrix = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]
+transposed = []
+for i in range(0,3):
+	transposedrow = []
+	for eachlist in matrix:
+		print(eachlist[i]) #print 1\n 5\n 9\n 2\n 6\n 10\n 3\n 7\n 11
+		transposedrow.append(eachlist[i])
+	transposed.append(transposedrow)
+print(transposed) #print [[1, 5, 9], [2, 6, 10], [3, 7, 11]]
+print([[row[i] for row in matrix] for i in range(0,3)]) #print [[1, 5, 9], [2, 6, 10], [3, 7, 11]]
+#3x4 matrix 3 lists length 4
+matrix = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]
+transposed = []
+for i in range(0,4):
+	transposedrow = []
+	for eachlist in matrix:
+		print(eachlist[i]) #print 1\n 5\n 9\n 2\n 6\n 10\n 3\n 7\n 11\n 4\n 8
+		transposedrow.append(eachlist[i])
+	transposed.append(transposedrow)
+print(transposed) #print [[1, 5, 9], [2, 6, 10], [3, 7, 11], [4, 8, 12]]
+print([[row[i] for row in matrix] for i in range(0,4)]) #print [[1, 5, 9], [2, 6, 10], [3, 7, 11], [4, 8, 12]]
+
+#zip() function creates a list of tuples
+matrix = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]
+print(list(zip(*matrix))) #print [(1, 5, 9), (2, 6, 10), (3, 7, 11), (4, 8, 12)]
+print(zip(*matrix)) #print <zip object at 0x7ff55d585f88>

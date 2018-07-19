@@ -128,3 +128,13 @@ while pollingactive:
 print(responses)
 for name, mountain in responses.items():
 	print(name+ " wants to climb " +mountain)
+
+#middle_name argument is optional with an empty default value
+def getformattedname(firstname, lastname, middlename=""):
+	if middlename: #Python interprets non-empty strings as True
+		fullname = firstname+ " " +middlename+ " " +lastname
+	else:
+		fullname = firstname+ " " +lastname
+	return fullname.title()
+musician = getformattedname("jimi","hendrix")
+print(musician) #print Jimi Hendrix
