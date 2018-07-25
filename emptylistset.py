@@ -138,3 +138,9 @@ def getformattedname(firstname, lastname, middlename=""):
 	return fullname.title()
 musician = getformattedname("jimi","hendrix")
 print(musician) #print Jimi Hendrix
+
+#Python For Kids
+myvar = None
+print(myvar) #print None
+if myvar == None:
+	print("The variable myvar doesn't have a value")
