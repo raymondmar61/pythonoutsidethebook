@@ -37,4 +37,14 @@ for number in range(1,101):
 		primenumberlistisprime.append(number)
 print(primenumberlistisprime)
 endtime2 = time.time()
-print((endtime2-startime2),"seconds") #print 0.00029540061950683594 
+print((endtime2-startime2),"seconds") #print 0.00029540061950683594
+
+#https://www.w3resource.com/python-exercises/list/python-data-type-list-exercise-34.php
+def prime_eratosthenes(n):
+    prime_list = []
+    for i in range(2, n+1):
+        if i not in prime_list:
+            print (i)
+            for j in range(i*i, n+1, i):
+                prime_list.append(j)
+print(prime_eratosthenes(100))
