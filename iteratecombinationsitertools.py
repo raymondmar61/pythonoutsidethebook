@@ -85,9 +85,9 @@ def replace2copy(lst):
 n = [0,1,2,3,4,5]
 print(replace2copy(n)) #print [1, 0, 3, 2, 5, 4]
 
+#https://www.blog.pythonlibrary.org/2016/04/20/python-201-an-intro-to-itertools/
 #https://medium.com/@jasonrigden/a-guide-to-python-itertools-82e5a306cdf8
 #https://realpython.com/python-itertools/
-#https://www.blog.pythonlibrary.org/2016/04/20/python-201-an-intro-to-itertools/
 #The count iterator will return evenly spaced values starting with the number you pass in as its start parameter. Count also accept a step parameter.  count(start=0,step=1).  RM:  =number is default
 from itertools import count
 for i in count(10):
@@ -135,12 +135,23 @@ print(next(iterator)) #print 5
 print(next(iterator)) #print 5
 print(next(iterator)) #error message StopIteration
 
-#The accumulate iterator will return accumulated sums or the accumulated results of a two argument function.  accumulate(iterable[,func])
+#The accumulate iterator will return accumulated sums or the accumulated results of a two argument function.  accumulate(iterable[,func]).  Default is sum.
 from itertools import accumulate
 #addfromindexnumbers = [x ]
-print(list(accumulate(range(0,10)))) #[0, 1, 3, 6, 10, 15, 21, 28, 36, 45]  RM:  adds the numbers from index position starting at 0.  0+0, 0+1, 1+2, 3+3, 6+4, 10+5, 15+6 . . . 
+print(list(accumulate(range(0,10)))) #[0, 1, 3, 6, 10, 15, 21, 28, 36, 45]  RM:  adds the numbers from index position starting at 0 accumulating the sum.  0+0, 0+1, 1+2, 3+3, 6+4, 10+5, 15+6 . . . .  Default is sum.
 import operator
 print(list(accumulate(range(1,5), operator.mul))) #[1, 2, 6, 24] #operator.mul multiplies the numbers from index position.  Instructors says look at accumulate documentation.
+data = [789, 10, 25, 54, 99]
+result = accumulate(data,operator.mul)
+print(list(result)) #print [789, 7890, 157800, 7890000, 781110000] or [789, 789*10, 789*10*25, 789*10*25*54, 789*10*25*54*99]
+data = [1, 2, 3, 4, 5]
+result = accumulate(data,operator.mul)
+for eachresult in result:
+	print(eachresult) #print 1\n 2\n 6\n 24\n 120\n
+data = [5, 2, 6, 4, 5, 9, 1]
+result = accumulate(data,max)
+for eachresult in result:
+	print(eachresult) #print 5\n 5\n 6\n 6\n 6\n 9\n 6\n
 
 #The chain iterator will take a series of iterables and basically flatten them down into one long iterable. chain(*iterables)  RM:  * means multiple objects
 from itertools import chain
