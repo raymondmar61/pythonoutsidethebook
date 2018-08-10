@@ -134,3 +134,5 @@ def squaremaplist(num):
 print(list(map(squaremaplist, numbers))) #print [0.0, 1.0, 4.0, 9.0, 16.0, 25.0, 36.0, 49.0, 64.0, 81.0, 100.0].  No need for the for loop.
 print(list(map(str, numbers))) #print ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'.  str is a function
 print(list(map(int, numbers))) #print [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].  int is a function
+
+print(list(map(len,["abc","de","fghi"]))) #print [3, 2, 4]

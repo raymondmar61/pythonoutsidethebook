@@ -1,6 +1,7 @@
 #https://docs.python.org/3.5/library/itertools.html, https://stackoverflow.com/questions/41680388/how-do-i-iterate-through-combinations-of-a-list, https://stackoverflow.com/questions/16384109/iterate-over-all-combinations-of-values-in-multiple-lists-in-python
 #RM:  there are more functions in itertools.  I selected the product(), combinations(), permutations(), chain(), chain.from_iterable().  08/02/18:  there are more itertools below the selected functions.
 
+#product creates a cartesian products from a series of iterables
 import itertools
 firstlist = [1,5,8]
 secondlist = [0.5, 4]
@@ -24,12 +25,13 @@ for comboquads in itertools.combinations_with_replacement(list12345, 4):
 list1234 = [1, 2, 3, 4]
 for productpairs in itertools.permutations(list1234, 2):
 	print(productpairs,end=";") #print (1, 2);(1, 3);(1, 4);(2, 1);(2, 3);(2, 4);(3, 1);(3, 2);(3, 4);(4, 1);(4, 2);(4, 3);  RM:  prints 1,2 and 2,1
+#product creates a cartesian products from a series of iterables
 list1234 = [1, 2, 3, 4]
 for productpairs in itertools.product(list1234, repeat=2):
 	print(productpairs,end=",") #print (1, 1),(1, 2),(1, 3),(1, 4),(2, 1),(2, 2),(2, 3),(2, 4),(3, 1),(3, 2),(3, 3),(3, 4),(4, 1),(4, 2),(4, 3),(4, 4),  RM: prints all combinations such as 1,1; 1,2; 2,1
 print("\n")
 
-#product(*iterables, repeat=1)
+#product creates a cartesian products from a series of iterables  product(*iterables, repeat=1)
 firstlist = [1,5,8]
 secondlist = [0.5, 4]
 thirdlist = [10,11,12]
@@ -39,7 +41,6 @@ threelist = list(itertools.product(firstlist, secondlist, thirdlist))
 print(threelist)
 for eachthreelist in threelist:
 	print(sum(eachthreelist)) #print the sum for eachthreelist entry; e.g. (8,4,12) print 24
-
 listone = [3]
 listtwo = [7, 4]
 listthree = [2, 4, 6]
@@ -116,6 +117,15 @@ for eachletter in cycle("xyz"):
 	else:
 		print(eachletter) #print x\n y\n z\n x\n y\n z\n x\n y\n
 	count += 1
+colors = ["red","orange","yellow","green","blue"]
+stopper = len(colors)
+counter = 0
+for eachcolors in cycle(colors):
+	#RM:  counter must be included to stop cycle making for loop infinite.  Obviously no need for cycle because for eachcolors in colors: iterates colors list once.
+	if counter == stopper:
+		break
+	print(eachcolors)	
+	counter += 1
 shapes = ["triangle","square","pentagon","rectangle"]
 iterator = cycle(shapes)
 print(next(iterator)) #print triangle
@@ -134,6 +144,9 @@ print(next(iterator)) #print 5
 print(next(iterator)) #print 5
 print(next(iterator)) #print 5
 print(next(iterator)) #error message StopIteration
+from itertools import repeat
+for i in repeat("spam",4):
+	print(i) #print spam\n spam\n spam\n spam
 
 #The accumulate iterator will return accumulated sums or the accumulated results of a two argument function.  accumulate(iterable[,func]).  Default is sum.
 from itertools import accumulate
@@ -175,7 +188,7 @@ print(passnestedlist) #print <itertools.chain object at 0x7f72c0a21f60>
 passnestedlistlist = list(chain.from_iterable([list1,list2,list3]))
 print(passnestedlistlist) #print ['foo', 'bar', 0, 1, 2, 3, 4, 'ls', '/some/dir']
 
-#The compress sub-module is useful for filtering the first iterable with the second. This works by making the second iterable a list of Booleans (or ones and zeroes which amounts to the same thing).  compress(data, selectors)
+#The compress sub-module is useful for filtering the first iterable with the second. This works by making the second iterable a list of Booleans (or ones and zeroes which amounts to the same thing).  Filters one iterable with another.  compress(data, selectors)
 from itertools import compress
 letters1 = "abcdefg"
 letters2 = "abcdefg"
@@ -187,7 +200,7 @@ print(list(compress(letters1,letters3))) #print ['a', 'b', 'c']
 print(list(compress(letters1,truefalse))) #print ['a', 'c', 'd'] #second list truefalse is Booleans
 print(list(compress(letters1,oneszeroes))) #print ['a', 'c', 'd'] #second list oneszeroes is ones and zeroes
 
-#Dropwhile will drop elements as long as the filter criteria is True. Because of this, you will not see any output from this iterator until the predicate becomes False. This can make the start-up time lengthy.  dropwhile(predicate, iterable).  RM:  I believe dropwhile drops all elements when True.  When False, dropwhile returns the rest of the elements.
+#Dropwhile will drop elements as long as the filter criteria is True. Because of this, you will not see any output from this iterator until the predicate becomes False. This can make the start-up time lengthy.  dropwhile(predicate, iterable).  RM:  I believe dropwhile drops all elements when True.  When False, dropwhile returns the rest of the elements.  Makes iterator drops elements from iterable as long as the predicate is true; otherwise, returns every rest of elements.
 from itertools import dropwhile
 def greaterthanfive(x):
 	return x>5
@@ -199,7 +212,7 @@ def greaterthanfive(x):
 	return x>5
 print(list(filterfalse(greaterthanfive,[6, 7, 8, 9, 1, 2, 3, 10]))) #print [1, 2, 3]
 
-#The groupby iterator will return consecutive keys and groups from your iterable.  groupby(iterable, key=None).  RM:  =None is default
+#The groupby iterator will return consecutive keys and groups from your iterable.  Groups things together.  groupby(iterable, key=None).  RM:  =None is default
 from itertools import groupby
 vehicles = [('Ford', 'Taurus'), ('Dodge', 'Durango'), ('Chevrolet', 'Cobalt'), ('Ford', 'F150'), ('Dodge', 'Charger'), ('Ford', 'GT')]
 sortvehicles = sorted(vehicles)
@@ -208,30 +221,41 @@ for key, group in groupby(sortvehicles,lambda make: make[0]):
 	for make, rightsidetuple in group:
 		print(make, rightsidetuple) #print Dodge Charger\n Dodge Durango
 
-#islice is an iterator that returns selected elements from the iterable. islice take a slice by index of your iterable (the thing you iterate over) and returns the selected items as an iterator. There are actually two implementations of islice. There’s itertools.islice(iterable, stop) and then there’s the version of islice that more closely matches regular Python slicing: islice(iterable, start, stop[, step]).
+#islice is an iterator that returns selected elements from the iterable. islice take a slice by index of your iterable (the thing you iterate over) and returns the selected items as an iterator.  Allows you to cut out a piece of an iterable.  There are actually two implementations of islice. There’s itertools.islice(iterable, stop) and then there’s the version of islice that more closely matches regular Python slicing: islice(iterable, start, stop[, step]).
 from itertools import islice, count
 for i in islice(count(),3, 15):
-	print(i) #print 3\n 4\n 5\n . . . 12\n 13\n 14\n
+	print(i) #print 3\n 4\n 5\n . . . 12\n 13\n 14
 for i in islice(count(),3, 15,3):
-	print(i) #print 3\n 6\n 9\n 12\n
+	print(i) #print 3\n 6\n 9\n 12
 n=45
 for i in islice(count(),n,70,5):
-	print(i) #print 45\n 50\n 55\n 60\n 65\n
+	print(i) #print 45\n 50\n 55\n 60\n 65
+colors = ["red","orange","yellow","green","blue"]
+number = 3
+fewercolors = islice(colors,number)
+for eachfewercolors in fewercolors:
+	print(eachfewercolors) #print red\n orange\n yellow
 
-#The starmap tool will create an iterator that can compute using the function and iterable provided.  starmap(function, iterable).
+#The starmap tool will create an iterator that can compute using the function and iterable provided.  Makes an iterator that computes the function using arguments obtained from the iterable.  starmap(function, iterable).
 from itertools import starmap
 def add(a,b):
 	return a+b
 for x in starmap(add,[(2,3),(4,5)]):
 	print(x) #print 5\n 9
+from itertools import starmap
+import operator
+data = [(2,6),(8,4),(7,3)]
+result = starmap(operator.mul, data)
+for eachresult in result:
+	print(eachresult) #print 12\n 32\n 21
 
-#The takewhile module is basically the opposite of the dropwhile iterator that we looked at earlier. takewhile will create an iterator that returns elements from the iterable only as long as our predicate or filter is True.  takewhile(predicate, iterable).
+#The takewhile module is basically the opposite of the dropwhile iterator that we looked at earlier. takewhile will create an iterator that returns elements from the iterable only as long as our predicate or filter is True.  Makes an iterator and returns elements from the iterable as long as the predicate is true.  takewhile(predicate, iterable).
 from itertools import takewhile
 def lessthanfive(x):
 	return x<5
 print(list(takewhile(lessthanfive,[1, 4, 2, 3, 6, 4, 1, 0]))) #print [1, 4, 2, 3]
 
-#The tee tool will create *n* iterators from a single iterable. What this means is that you can create multiple iterators from one iterable.  tee(iterable,n=2).
+#The tee tool will create *n* iterators from a single iterable. What this means is that you can create multiple iterators from one iterable.  Returns n independent iterators from a single iterable.  tee(iterable,n=2).
 from itertools import tee
 data = "abcde"
 iter1, iter2, iter3 = tee(data,3)
@@ -242,10 +266,25 @@ for eachiter2 in iter2:
 for eachiter3 in iter3:
 	print(eachiter3) #print a\n b\n c\n d\n e
 #we use multiple assignment to acquire the three iterators that are returned from tee. Finally we loop over each of the iterators and print out their contents. The content are the same.
+colors = ["red","orange","yellow","green","blue"]
+alphacolors1, betacolors2 = tee(colors,2)
+for eachalphacolors1 in alphacolors1:
+	print(eachalphacolors1) #print red\n orange\n yellow\n green\n blue
+for eachbetacolors2 in betacolors2:
+	print(eachbetacolors2) #print red\n orange\n yellow\n green\n blue
 
-#The **zip_longest** iterator can be used to zip two iterables together. If the iterables don’t happen to be the same length, then you can also pass in a **fillvalue**.  zip_longest(*iterables, fillvalue=None).
+#The **zip_longest** iterator can be used to zip two iterables together. If the iterables don’t happen to be the same length, then you can also pass in a **fillvalue**.  Makes an iterator that aggregates elements from each of the iterables.  If the iterables are of uneven length, missing values are filled-in with fillvalue.  Iteration stops when the longest iterable is exhausted.  zip_longest(*iterables, fillvalue=None).
 from itertools import zip_longest
 for item in zip_longest("abcd","xy",fillvalue="blank"):
 	print(item) #print ('a', 'x')\n ('b', 'y')\n ('c', 'blank')\n ('d', 'blank')
 for item in zip_longest("abcdefg","vwxy", "quick",fillvalue="blank"):
 	print(item) #print ('a', 'v', 'q')\n ('b', 'w', 'u')\n ('c', 'x', 'i')\n ('d', 'y', 'c')\n ('e', 'blank', 'k')\n ('f', 'blank', 'blank')\n ('g', 'blank', 'blank')
+colors = ["red","orange","yellow","green","blue"]
+data = [1,2,3,4,5,6,7,8,9,10]
+for eachcolorsdata in zip_longest(colors, data, fillvalue=None):
+	print(eachcolorsdata) #print ('red', 1)\n ('orange', 2)\n ('yellow', 3)\n ('green', 4)\n ('blue', 5)\n \n (None, 6)\n (None, 7)\n (None, 8)\n (None, 9)\n (None, 10)
+print(list(zip(colors,data))) #print [('red', 1), ('orange', 2), ('yellow', 3), ('green', 4), ('blue', 5)]
+
+#The built-in zip() function, which takes any number of iterables as arguments and returns an iterator over tuples of their corresponding elements.  Lists are iterables which means they can return their elements one at a time.
+print(list(zip([1, 2, 3],["a","b","c"]))) #print [(1, 'a'), (2, 'b'), (3, 'c')]
+print(list(map(len,["abc","de","fghi"]))) #print [3, 2, 4]
