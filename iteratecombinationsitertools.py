@@ -147,8 +147,15 @@ print(next(iterator)) #error message StopIteration
 from itertools import repeat
 for i in repeat("spam",4):
 	print(i) #print spam\n spam\n spam\n spam
+print(repeat(1,5)) #print repeat(1,5)
+repeatonefive = repeat(1,5)
+print(repeatonefive) #print repeat(1,5)
+for i in repeat(1,5):
+	print(i) #print 1\n 1\n 1\n 1\n 1
+for i in repeatonefive:
+	print(i) #print 1\n 1\n 1\n 1\n 1
 
-#The accumulate iterator will return accumulated sums or the accumulated results of a two argument function.  accumulate(iterable[,func]).  Default is sum.
+#The accumulate iterator will return accumulated sums or the accumulated results of a two argument function.  accumulate(iterable[,func]).  Default is sum or operator.add.
 from itertools import accumulate
 #addfromindexnumbers = [x ]
 print(list(accumulate(range(0,10)))) #[0, 1, 3, 6, 10, 15, 21, 28, 36, 45]  RM:  adds the numbers from index position starting at 0 accumulating the sum.  0+0, 0+1, 1+2, 3+3, 6+4, 10+5, 15+6 . . . .  Default is sum.
@@ -165,6 +172,9 @@ data = [5, 2, 6, 4, 5, 9, 1]
 result = accumulate(data,max)
 for eachresult in result:
 	print(eachresult) #print 5\n 5\n 6\n 6\n 6\n 9\n 6\n
+data = [5, 2, 6, 4, 5, 9, 1]
+for eachresult in accumulate(data,min):
+	print(eachresult) #print 5\n 2\n 2\n 2\n 2\n 2\n 1\n
 
 #The chain iterator will take a series of iterables and basically flatten them down into one long iterable. chain(*iterables)  RM:  * means multiple objects
 from itertools import chain
@@ -236,6 +246,22 @@ fewercolors = islice(colors,number)
 for eachfewercolors in fewercolors:
 	print(eachfewercolors) #print red\n orange\n yellow
 
+counter = count()
+print(list(next(counter) for x in range(0, 5))) #print [0, 1, 2, 3, 4]
+evens = count(step=2)
+print(list(next(evens) for x in range(0, 5))) #print [0, 2, 4, 6, 8]
+odds = count(start=1, step=2)
+print(list(next(odds) for x in range(0, 5))) #print [1, 3, 5, 7, 9]
+floats = count(start=.5, step=.75)
+print(list(next(floats) for x in range(0, 5))) #print [0.5, 1.25, 2.0, 2.75, 3.5]
+negatives = count(start=-1, step=-.5)
+print(list(next(negatives) for x in range(0, 5))) #print [-1, -1.5, -2.0, -2.5, -3.0]
+print(list(zip(count(),["a","b","c"]))) #print[(0, 'a'), (1, 'b'), (2, 'c')]
+print(list(zip(count(start=1),["a","b","c"]))) #print[(1, 'a'), (2, 'b'), (3, 'c')]
+ten = count(start=10, step=3)
+for x in range(10,21):
+	print(next(ten)) #print 10\n 13\n 16\n 19\n 22\n 25\n 28\n 31\n 34\n 37\n 40
+
 #The starmap tool will create an iterator that can compute using the function and iterable provided.  Makes an iterator that computes the function using arguments obtained from the iterable.  starmap(function, iterable).
 from itertools import starmap
 def add(a,b):
@@ -285,6 +311,24 @@ for eachcolorsdata in zip_longest(colors, data, fillvalue=None):
 	print(eachcolorsdata) #print ('red', 1)\n ('orange', 2)\n ('yellow', 3)\n ('green', 4)\n ('blue', 5)\n \n (None, 6)\n (None, 7)\n (None, 8)\n (None, 9)\n (None, 10)
 print(list(zip(colors,data))) #print [('red', 1), ('orange', 2), ('yellow', 3), ('green', 4), ('blue', 5)]
 
-#The built-in zip() function, which takes any number of iterables as arguments and returns an iterator over tuples of their corresponding elements.  Lists are iterables which means they can return their elements one at a time.
+#The built-in zip() function, which takes any number of iterables as arguments and returns an iterator over tuples of their corresponding elements.  Lists are iterables which means they can return their elements one at a time.  zip() function aggregates the results into tuples.
 print(list(zip([1, 2, 3],["a","b","c"]))) #print [(1, 'a'), (2, 'b'), (3, 'c')]
 print(list(map(len,["abc","de","fghi"]))) #print [3, 2, 4]
+from itertools import zip_longest
+x = [1, 2, 3, 4, 5]
+y = ["a","b","c"]
+print(list(zip(x,y))) #print [(1, 'a'), (2, 'b'), (3, 'c')]
+print(list(zip_longest(x,y))) #print [(1, 'a'), (2, 'b'), (3, 'c'), (4, None), (5, None)]
+
+def grouper(inputlist, n, fillvalue=None):
+	print(inputlist) #print [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+	iters = [iter(inputlist)] * n
+	print(iter(inputlist)) #print <list_iterator object at 0x7fc62ddb5780>
+	print(iters) #print [<list_iterator object at 0x7f3168c5b7f0>, <list_iterator object at 0x7f3168c5b7f0>, <list_iterator object at 0x7f3168c5b7f0>, <list_iterator object at 0x7f3168c5b7f0>]
+	print(list(iters)) #print [<list_iterator object at 0x7fbcb4c897f0>, <list_iterator object at 0x7fbcb4c897f0>, <list_iterator object at 0x7fbcb4c897f0>, <list_iterator object at 0x7fbcb4c897f0>]
+	print([iter(inputlist)] * n) #print [<list_iterator object at 0x7fb99c9e6748>, <list_iterator object at 0x7fb99c9e6748>, <list_iterator object at 0x7fb99c9e6748>, <list_iterator object at 0x7fb99c9e6748>]
+	print((inputlist)*n) #print [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+	return zip_longest(*iters, fillvalue=fillvalue)
+numberlist = [1,2,3,4,5,6,7,8,9,10]
+#print(grouper(numberlist,4)) #print <itertools.zip_longest object at 0x7f422d6b9d18>
+print(list(grouper(numberlist,4))) #print [(1, 2, 3, 4), (5, 6, 7, 8), (9, 10, None, None)]
