@@ -48,3 +48,37 @@ def prime_eratosthenes(n):
             for j in range(i*i, n+1, i):
                 prime_list.append(j)
 print(prime_eratosthenes(100))
+
+#soufianekiller
+def is_prime(n):
+    if n == 2:
+        return True
+    if n%2 == 0 or n<2:
+        return False
+    for i in range(3,int(n**0.5)+1,2):
+        if n%i == 0:
+            return False
+    return True
+
+#rtng
+def is_prime(a):
+    if a == 1:
+        return False
+    for b in range(2, round(a ** 0.5) + 1):
+        if a % b == 0:
+            return False
+    return True
+
+from math import sqrt
+
+#luisbenedict
+from math import sqrt
+def is_prime(n):
+    if n < 2:
+        return False
+    else:
+        for i in range(2, int(sqrt(n)) + 1):
+            if n % i == 0:
+                return False
+        else:
+            return True
