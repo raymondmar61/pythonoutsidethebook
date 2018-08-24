@@ -230,6 +230,27 @@ for key, group in groupby(sortvehicles,lambda make: make[0]):
 	print(key, group) #print Dodge <itertools._grouper object at 0x7fb77439a160>
 	for make, rightsidetuple in group:
 		print(make, rightsidetuple) #print Dodge Charger\n Dodge Durango
+#40. Write a Python program to split a list based on first character of word.  RM:  return the list of words by the first letter for each word.  The answer is not a list.  The answer is words grouped by the first letter for each word.
+from itertools import groupby
+from operator import itemgetter
+word_list = ['be','have','do','say','get','make','go','know','take','see','come','think',
+     'look','want','give','use','find','tell','ask','work','seem','feel','leave','call']
+for letter, words in groupby(sorted(word_list), key=itemgetter(0)):
+    print(letter)
+    for word in words:
+        print(word)
+"""print
+a
+ask
+b
+be
+c
+call
+come
+d
+do
+. . . 
+"""
 
 #islice is an iterator that returns selected elements from the iterable. islice take a slice by index of your iterable (the thing you iterate over) and returns the selected items as an iterator.  Allows you to cut out a piece of an iterable.  There are actually two implementations of islice. There’s itertools.islice(iterable, stop) and then there’s the version of islice that more closely matches regular Python slicing: islice(iterable, start, stop[, step]).
 from itertools import islice, count
