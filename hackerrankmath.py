@@ -45,3 +45,16 @@ For example, a palindromic triangle of size 5 is:
 n = 10
 for n in range(1,n+1):
 	print((111111111//(10**(9-n)))**2)
+#No two line Python code
+n = 1
+while n < 20:	
+	beginninglist = []
+	if n == 1:
+		print(n)
+	else:
+		for n in range(1,n+1):
+			beginninglist.append(str(n))
+		beginningpart = ("".join(beginninglist))
+		endingpart = ("".join(beginninglist[len(beginninglist)-2::-1]))
+		print(beginningpart+""+endingpart)
+	n += 1
