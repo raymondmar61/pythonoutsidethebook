@@ -58,3 +58,38 @@ while n < 20:
 		endingpart = ("".join(beginninglist[len(beginninglist)-2::-1]))
 		print(beginningpart+""+endingpart)
 	n += 1
+
+#https://www.hackerrank.com/challenges/python-mod-divmod/problem
+#The first line is the integer division
+#The second line is the result of the modulo operator.
+#The third line prints the divmod
+print(divmod(177,10)) #print (17, 7).  177/10=17 remainder 7 or 177/10=>17 177%10=>7
+a=177
+b=10
+print((a//b)) #print 17
+print(a%b) #print 7
+print(divmod(a,b)) #print (17, 7)
+
+#https://www.hackerrank.com/challenges/python-integers-come-in-all-sizes/problem
+#integers a, b, c, d.  Print (a^b)+(c^d)
+a=9
+b=29
+c=7
+d=27
+print((a**b)+(c**d)) #print 4710194409608608369201743232
+
+#https://www.hackerrank.com/challenges/python-quest-1/problem
+#https://stackoverflow.com/questions/30336222/python-triangle-quest-arithmetical-operation-inside-print
+#You are given a positive integer . Print a numerical triangle of height  like the one below:
+'''
+1
+22
+333
+4444
+55555
+......
+'''
+for i in range(1,9):
+	print((i*(10**i - 1))//9)
+for i in range(1,10):
+	print(str(i)*i)
