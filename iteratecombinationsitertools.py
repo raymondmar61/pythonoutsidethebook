@@ -251,6 +251,27 @@ d
 do
 . . . 
 """
+#count frequency elements in a list count.  List must be sorted.
+#Source: https://stackoverflow.com/questions/2161752/how-to-count-the-frequency-of-the-elements-in-a-list
+#The python groupby creates new groups when the value it sees changes. In this case [1,1,1,2,1,1,1] would return [3,1,3]. If you expected [6,1] then just be sure to sort the data before using groupby
+countnumbers = [1,1,1,1,2,2,2,2,3,3,4,5,5]
+poodlecolors = ["black", "black", "black", "black", "black", "black", "black", "black", "black", "black", "black", "black", "black", "black", "black", "black", "black", "brown", "brown", "brown", "brown", "brown", "brown", "brown", "brown", "brown", "brown", "brown", "brown", "brown", "gold", "gold", "gold", "gold", "gold", "gold", "gold", "gold", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "grey", "white", "white", "white", "white", "white", "white", "white", "white", "white", "white"]
+frequencycountnumbers = [len(list(group)) for key, group in groupby(countnumbers)]
+print(frequencycountnumbers) #print [4, 4, 2, 1, 2]
+dictionaryfrequencycountnumbers = {key: len(list(group)) for key, group in groupby(countnumbers)}
+print(dictionaryfrequencycountnumbers) #print {1: 4, 2: 4, 3: 2, 4: 1, 5: 2}
+frequencypoodlecolors = [len(list(group)) for key, group in groupby(poodlecolors)]
+print(frequencypoodlecolors) #print [17, 13, 8, 52, 10]
+dictionaryfrequencypoodlecolors = {key: len(list(group)) for key, group in groupby(poodlecolors)}
+print(dictionaryfrequencypoodlecolors) #print {'black': 17, 'brown': 13, 'gold': 8, 'grey': 52, 'white': 10}
+
+#bonus Python 2.7+ introduces Dictionary Comprehension. Building the dictionary from the list will get you the count as well as get rid of duplicates.
+countnumbers = [1,1,1,1,2,2,2,2,3,3,4,5,5]
+d = {x:countnumbers.count(x) for x in countnumbers}
+print(d) #print {1: 4, 2: 4, 3: 2, 4: 1, 5: 2}
+countnumberskeyes, countnumbersvalues = d.keys(), d.values()
+print(countnumberskeyes) #print dict_keys([1, 2, 3, 4, 5])
+print(countnumbersvalues) #print dict_values([4, 4, 2, 1, 2])
 
 #islice is an iterator that returns selected elements from the iterable. islice take a slice by index of your iterable (the thing you iterate over) and returns the selected items as an iterator.  Allows you to cut out a piece of an iterable.  There are actually two implementations of islice. There’s itertools.islice(iterable, stop) and then there’s the version of islice that more closely matches regular Python slicing: islice(iterable, start, stop[, step]).
 from itertools import islice, count
