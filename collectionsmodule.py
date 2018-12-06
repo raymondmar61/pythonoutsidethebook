@@ -6,7 +6,7 @@
 #https://dzone.com/articles/python-collections-high-performing-containers-for
 
 from collections import defaultdict
-#The default dictionary can contain duplicate keys. The advantage of using default dictionary is that we can collect items which belong to the same key.  defaultdict is a dictionary like object which provides all methods provided by dictionary but takes first argument (default_factory) as default data type for the dictionary.
+#The default dictionary can contain duplicate keys. The advantage of using default dictionary is that we can collect items which belong to the same key.  defaultdict is a dictionary like object which provides all methods provided by dictionary but takes first argument (default_factory) as default data type for the dictionary.  Default Dictionary allows the user to specify a function to be called when a key is not present in the dictionary.  When a dictionary is queried for a key which does not exist, the function passed as an argument to the named argument "default_dictionary" of default_dict() will be called to set a value for a given "key" into the dictionary.
 colors = (("yellow","banana"), ("red","apple"),("blue","sky"),("green","trees"),("white","walls"),("black","shirt"),("red","fire engine"))
 print(colors) #print (('yellow', 'banana'), ('red', 'apple'), ('blue', 'sky'), ('green', 'trees'), ('white', 'walls'), ('black', 'shirt'), ('red', 'fire engine'))
 # favoritecolors = defaultdict(colors)
@@ -25,9 +25,24 @@ for k, v in days:
 	activedays[k] += v
 print(defaultdict) #print <class 'collections.defaultdict'>
 print(activedays) #print defaultdict(<class 'float'>, {'monday': 5.5, 'wednesday': 2.0, 'friday': 4.0, 'tuesday': 3.5, 'thursday': 2.0})
+books = defaultdict(lambda:"Not Available") #books is a defaultdict.  It sets Not Available as a value if any nonexistent key is accessed.
+books["a"] = "Arts"
+books["b"] = "Biology"
+books["c"] = "Chemistry"
+print(books) #print defaultdict(<function <lambda> at 0x7f2097ea4e18>, {'a': 'Arts', 'b': 'Biology', 'c': 'Chemistry'})
+print(books["z"]) #print Not Available
+print(books) #print defaultdict(<function <lambda> at 0x7fc71b331e18>, {'a': 'Arts', 'b': 'Biology', 'c': 'Chemistry', 'z': 'Not Available'})
+booksaslist = [("a","Arts"),("b","Biography"),("c","Computer"),("a","Army"),("d","Dogs")] #list of tuples
+favoritebooks = defaultdict(list)
+for key, value in booksaslist:
+	favoritebooks[key].append(value)
+print(favoritebooks) #print defaultdict(<class 'list'>, {'a': ['Arts', 'Army'], 'b': ['Biography'], 'c': ['Computer'], 'd': ['Dogs']})
+print(favoritebooks.items()) #print dict_items([('a', ['Arts', 'Army']), ('b', ['Biography']), ('c', ['Computer']), ('d', ['Dogs'])])
+print(list(favoritebooks.items())) #print [('a', ['Arts', 'Army']), ('b', ['Biography']), ('c', ['Computer']), ('d', ['Dogs'])]
+
 
 from collections import OrderedDict
-#OrderedDict keeps its entries sorted as they are iniitially inserted.  The order of insertion is maintained when key and values are inserted into the dictionary. If we try to insert a key again, this will overwrite the previous value for that key.
+#OrderedDict keeps its entries sorted as they are iniitially inserted.  The order of insertion is maintained when key and values are inserted into the dictionary. If we try to insert a key again, this will overwrite the previous value for that key.  OrderedDict can sort and store or rank.
 stocks = {"GOOG": 520.54, "FB": 76.45, "YHOO": 39.28, "AMZN": 305.21, "AAPL": 99.76}
 for key, value in stocks.items():
 	print(key, value) #RM:  no OrderedDict required.  Prints in order GOOG, FB, YHOO, AMZN, AAPL
@@ -43,6 +58,39 @@ print(thedictionary) #print {'a': 1, 'b': 10, 'c': 8, 'd': 19, 'e': 80}
 #thedictionary.popitem(last=False) #TypeError: popitem() takes no keyword arguments
 #for letter in reversed(thedictionary): #TypeError: 'dict' object is not reversible
 #	print(letter)
+armyalphabet = OrderedDict()
+armyalphabet["a"] = "Alpha"
+armyalphabet["b"] = "Bravo"
+armyalphabet["c"] = "Charlie"
+armyalphabet["d"] = "Delta"
+armyalphabet["e"] = "Echo"
+print(armyalphabet) #print OrderedDict([('a', 'Alpha'), ('b', 'Bravo'), ('c', 'Charlie'), ('d', 'Delta'), ('e', 'Echo')])
+print(armyalphabet.items()) #print odict_items([('a', 'Alpha'), ('b', 'Bravo'), ('c', 'Charlie'), ('d', 'Delta'), ('e', 'Echo')])
+print(armyalphabet.keys()) #print odict_keys(['a', 'b', 'c', 'd', 'e'])
+print(armyalphabet.values()) #print odict_values(['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo'])
+armyalphabet2 = OrderedDict()
+armyalphabet2 = {"a":"Alpha", "b":"Bravo", "c":"Charlie", "d":"Delta", "e":"Echo"}
+print(armyalphabet2) #print {'a': 'Alpha', 'b': 'Bravo', 'c': 'Charlie', 'd': 'Delta', 'e': 'Echo'}
+print(armyalphabet2.items()) #print dict_items([('a', 'Alpha'), ('b', 'Bravo'), ('c', 'Charlie'), ('d', 'Delta'), ('e', 'Echo')])
+print(armyalphabet2.keys()) #print dict_keys(['a', 'b', 'c', 'd', 'e'])
+print(armyalphabet2.values()) #print dict_values(['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo'])
+#RM:  armyalphabet2 is not an OrderedDict.  It's a plain dictionary it seems.
+armyalphabet3 = OrderedDict({"a":"Alpha", "b":"Bravo", "c":"Charlie", "d":"Delta", "e":"Echo"})
+print(armyalphabet3) #print OrderedDict([('a', 'Alpha'), ('b', 'Bravo'), ('c', 'Charlie'), ('d', 'Delta'), ('e', 'Echo')])
+print(armyalphabet3.items()) #print odict_items([('a', 'Alpha'), ('b', 'Bravo'), ('c', 'Charlie'), ('d', 'Delta'), ('e', 'Echo')])
+print(armyalphabet3.keys()) #print odict_keys(['a', 'b', 'c', 'd', 'e'])
+print(armyalphabet3.values()) #print odict_values(['Alpha', 'Bravo', 'Charlie', 'Delta', 'Echo'])
+keyvalues = [(1,"won"),(2,"shoe"),(3,"tree"),(4,"door"),(5,"wine"),(6,"six")]  #OrderedDict can also be created by passing a dictionary or a list of key, value pair tuples.
+keyvaluesorddict = OrderedDict(keyvalues)
+print(keyvaluesorddict) #print OrderedDict([(1, 'won'), (2, 'shoe'), (3, 'tree'), (4, 'door'), (5, 'wine'), (6, 'six')])
+studentscores = {"Ason":85, "Shawn":99, "Ron":78, "Hope":67, "Skip":100}
+print(studentscores) #print {'Ason': 85, 'Shawn': 99, 'Ron': 78, 'Hope': 67, 'Skip': 100}
+print(sorted(studentscores.items(), key=lambda t:t[0])) #print [('Ason', 85), ('Hope', 67), ('Ron', 78), ('Shawn', 99), ('Skip', 100)]
+#print(sorted(studentscores.items(), key=lambda t:-t[0])) #error message TypeError: bad operand type for unary -: 'str'
+print(sorted(studentscores.items(), key=lambda t:t[1])) #print [('Hope', 67), ('Ron', 78), ('Ason', 85), ('Shawn', 99), ('Skip', 100)]
+print(sorted(studentscores.items(), key=lambda t:-t[1])) #print [('Skip', 100), ('Shawn', 99), ('Ason', 85), ('Ron', 78), ('Hope', 67)]
+rankOrder = OrderedDict(sorted(studentscores.items(), key=lambda t:-t[1]))
+print(rankOrder) #print OrderedDict([('Skip', 100), ('Shawn', 99), ('Ason', 85), ('Ron', 78), ('Hope', 67)])
 
 from collections import Counter
 #Counter allows us to count the occurrences of a particular item.  Counter counts hashable objects.  Elements are stored as dictionary keys and counts are stored as values which can be zero or negative.  The Counter collections allow us to keep a count of all the items which are inserted into the collection with the keys.  The key is the item to be counted and value is the count.  Counter is used for rapid tallies. It is a dictionary, where the elements are stored as keys and their counts are stored as values.
@@ -87,7 +135,7 @@ print(a&b) #print Counter({'z': 3, 'y': 2, 'x': 1}) #Minimum values
 print(a|b) #print Counter({'z': 4, 'y': 3, 'x': 2}) #Maximum values
 
 from collections import deque
-#deque stands for "double-ended queue" and is used as a stack or queue.  deque provides you with a double ended queue which means that you can append and delete elements from either side of the queue.  If you're structuring the data in a way that requires quickly appending to either end or retrieving from either end then you would want to use a deque.
+#deque stands for "double-ended queue" and is used as a stack or queue.  deque provides you with a double ended queue which means that you can append and delete elements from either side of the queue.  If you're structuring the data in a way that requires quickly appending to either end or retrieving from either end then you would want to use a deque.  Pronounced "deck".
 dequeobject = deque()
 dequeobject.append("Oh")
 dequeobject.append("say")
@@ -129,6 +177,32 @@ print(dequeobject) #print deque([], maxlen=10) RM:  maxlen doesn't work
 # 	else:
 # 		dequeinput.append(inputuser)
 # 		print(dequeinput)
+print("\n")
+maxlengthfive = deque([1,2,3,4,5], maxlen=5)
+print(maxlengthfive) #print deque([1, 2, 3, 4, 5], maxlen=5)
+maxlengthfive.append(6)
+print(maxlengthfive) #print deque([2, 3, 4, 5, 6], maxlen=5)
+maxlengthfive.appendleft(-10)
+print(maxlengthfive) #print deque([-10, 2, 3, 4, 5], maxlen=5)
+maxlengthfive.extend([7, 100, 1004])
+print(maxlengthfive) #print deque([4, 5, 7, 100, 1004], maxlen=5) #extend starts from center to right
+maxlengthfive.pop()
+print(maxlengthfive) #print deque([4, 5, 7, 100], maxlen=5)
+maxlengthfive.appendleft(0)
+print(maxlengthfive) #print deque([0, 4, 5, 7, 100], maxlen=5)
+maxlengthfive.extendleft([-1, -2, -3])
+print(maxlengthfive) #print deque([-3, -2, -1, 0, 4], maxlen=5) #extendleft() starts from center to left
+maxlengthfive.popleft()
+print(maxlengthfive) #print deque([-2, -1, 0, 4], maxlen=5)
+maxlengthfive.popleft()
+maxlengthfive.popleft()
+print(maxlengthfive) #print deque([0, 4], maxlen=5)
+#If the maxlen value is not set, the deque does not perform any trimming operations to maintain the size of the deque.
+anylengthfive = deque([1, 2, 3, 4, 5])
+anylengthfive.appendleft(0)
+print(anylengthfive) #print deque([0, 1, 2, 3, 4, 5])
+anylengthfive.extendleft([-1, -2, -3])
+print(anylengthfive) #print deque([-3, -2, -1, 0, 1, 2, 3, 4, 5])
 
 from collections import namedtuple
 #namedtuple is like dictionaries except it's immutable or can't reassign an item or can't reassign a value.  Namedtuple makes your tuples self-document. You are not bound to use integer indexes to access members of a tuple.  It makes it more easy to maintain your code.  It allows you to give names to each position making the code more readable and self-documenting. Also with a namedtuple you can access the positions by name as well as index.  User defines name for elements.
