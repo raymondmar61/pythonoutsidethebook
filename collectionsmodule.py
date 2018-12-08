@@ -4,6 +4,7 @@
 #https://www.journaldev.com/19103/python-collections
 #https://howchoo.com/g/mtbhy2qzota/python-collections
 #https://dzone.com/articles/python-collections-high-performing-containers-for
+#official Python Wiki Collections https://docs.Python.org/3.5/library/collections.html
 
 from collections import defaultdict
 #The default dictionary can contain duplicate keys. The advantage of using default dictionary is that we can collect items which belong to the same key.  defaultdict is a dictionary like object which provides all methods provided by dictionary but takes first argument (default_factory) as default data type for the dictionary.  Default Dictionary allows the user to specify a function to be called when a key is not present in the dictionary.  When a dictionary is queried for a key which does not exist, the function passed as an argument to the named argument "default_dictionary" of default_dict() will be called to set a value for a given "key" into the dictionary.
@@ -235,3 +236,17 @@ print(birdtuple) #print animal(name='Woody', age=198, type='woodpecker')
 print(animal._fields) #print ('name', 'age', 'type')
 #namedtuple will be very handy while processing a CSV data file, where we can access the data using names instead of indexes, which make the code more meaningful and efficient.
 
+from collections import ChainMap
+#ChainMap allows to combine multiple dictionaries into a single dictionary so that operations can be performed on a single logical entity. The ChainMap() does not create any new dictionary, instead it maintains references to the original dictionaries, all operations are performed only on the referred dictionaries.  ChainMap will not maintain duplicate keys.  It skips the second occurrence of the same key.  RM:  ChainMap must be spelled ChainMap
+dictionaryone = {"a":"alpha", "b":"bravo","c":"charlie"}
+dictionarytwo = {"c":"cat","d":"delta","e":"echo"}
+dictionaryonetwo = ChainMap(dictionaryone, dictionarytwo)
+print(dictionaryonetwo)
+print(list(dictionaryonetwo.keys())) #print ['d', 'c', 'a', 'b', 'e'] RM:  no duplicates c key
+print(list(dictionaryonetwo.values())) #print ['delta', 'charlie', 'alpha', 'bravo', 'echo'] RM:  no duplicates c key
+print(list(dictionaryonetwo.items())) #print [('d', 'delta'), ('b', 'bravo'), ('e', 'echo'), ('c', 'charlie'), ('a', 'alpha')] c key
+print(dictionaryone) #print {'a': 'alpha', 'b': 'bravo', 'c': 'charlie'}
+print(dictionarytwo) #print {'c': 'cat', 'd': 'delta', 'e': 'echo'}
+dictionaryone.pop("c")
+print(dictionaryone) #print {'a': 'alpha', 'b': 'bravo'}
+print(list(dictionaryonetwo.items())) #print [('b', 'bravo'), ('c', 'cat'), ('d', 'delta'), ('e', 'echo'), ('a', 'alpha')]
