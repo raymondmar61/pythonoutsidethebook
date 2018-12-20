@@ -217,3 +217,9 @@ half = 1/2
 print("Percentage: {}%".format(half)) #print Percentage: 0.5%
 third = 1/3
 print("Percentage: {}%".format(third)) #print Percentage: 0.3333333333333333%
+
+#20. Write a Python program to print a tuple with string formatting. Sample tuple: (100, 200, 300).  Output: This is a tuple (100, 200, 300).
+sampletuple = (100, 200, 300)
+print("This is a tuple", sampletuple) #print This is a tuple (100, 200, 300)
+print("This is a tuple {0}".format(sampletuple)) #print This is a tuple (100, 200, 300)
+print("This is a tuple {}".format(sampletuple)) #print This is a tuple (100, 200, 300)
