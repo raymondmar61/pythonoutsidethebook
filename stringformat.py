@@ -223,3 +223,12 @@ sampletuple = (100, 200, 300)
 print("This is a tuple", sampletuple) #print This is a tuple (100, 200, 300)
 print("This is a tuple {0}".format(sampletuple)) #print This is a tuple (100, 200, 300)
 print("This is a tuple {}".format(sampletuple)) #print This is a tuple (100, 200, 300)
+
+planet = "Pluto"
+position = 9
+print(planet+" you'll always be the " +str(position)+"th planet to me.") #print Pluto you'll always be the 9th planet to me.
+print("{} you'll always be the {}th planet to me.".format(planet,position)) #print Pluto you'll always be the 9th planet to me.  Notice how we didn't even have to call str() to convert position 9 from an int. format() takes care of that for us.
+plutomass = 1.303 * (10**22)
+earthmass = 5.9722 * (10**24)
+population = 52910390
+print("{:.2} two decimal places.  {:.3} three decimal places, {:.3%} three decimal places as percent.  {:,} separate with commas".format(plutomass, earthmass, plutomass/earthmass, population)) #print 1.3e+22 two decimal places.  5.97e+24 three decimal places, 0.218% three decimal places as percent.  52,910,390 separate with commas

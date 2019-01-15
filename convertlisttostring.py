@@ -21,3 +21,7 @@ integerslist = [80, 443, 8080, 8081]
 print(", ".join(map(str, integerslist))) #print 80, 443, 8080, 8081
 print("\n".join(map(str, integerslist))) #print 80\n 443\n 8080\n 8081
 print("".join(map(str, integerslist))) #print 8044380808081
+
+#extract values from a dictionary to one string
+planetdictionarycomprehension =  {'Mercury': 'M', 'Venus': 'V', 'Earth': 'E', 'Mars': 'M', 'Jupiter': 'J', 'Saturn': 'S', 'Uranus': 'U', 'Neptune': 'N'}
+print(" ".join(planetdictionarycomprehension.values())) #print M V E M J S U N
