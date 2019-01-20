@@ -232,3 +232,15 @@ plutomass = 1.303 * (10**22)
 earthmass = 5.9722 * (10**24)
 population = 52910390
 print("{:.2} two decimal places.  {:.3} three decimal places, {:.3%} three decimal places as percent.  {:,} separate with commas".format(plutomass, earthmass, plutomass/earthmass, population)) #print 1.3e+22 two decimal places.  5.97e+24 three decimal places, 0.218% three decimal places as percent.  52,910,390 separate with commas
+
+#https://stackoverflow.com/questions/3505831/in-python-how-do-i-convert-a-single-digit-number-into-a-double-digits-string
+for i in range(9,0,-1):
+	print(i)
+	print("{0:0=2d} single digit numbers printed double digits or with a zero in front".format(i))
+a = ["%02d" % x for x in range(0,10)]
+print(a) #print ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09']
+
+#https://stackoverflow.com/questions/134934/display-number-with-leading-zeros
+print('{:02}'.format(1)) #print 01
+print('{:02}'.format(10)) #print 10
+print('{:02}'.format(100)) #print 100
