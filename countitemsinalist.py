@@ -96,11 +96,6 @@ c3 = Counter(a=2, b=-4)
 print(+c3) #print Counter({'a': 2})
 print(-c3) #print Counter({'b': 4})
 
-#https://pymotw.com/3/collections/counter.html#initializing
-
-#https://data-flair.training/blogs/python-counter/
-
-
 #https://www.dotnetperls.com/counter-python
 from random import randint
 numberslist = []
@@ -122,3 +117,91 @@ countbirds["birds"] -= 1
 print(countbirds) #print Counter({'birds': 3})
 countbirds["birds"] = 100
 print(countbirds) #print Counter({'birds': 100})
+
+#https://pymotw.com/3/collections/counter.html#initializing
+print(Counter(["a","b","c","a","b","c"])) #print Counter({'a': 2, 'b': 2, 'c': 2})
+print(Counter({"a":2, "b":3, "c":1})) #print Counter({'b': 3, 'a': 2, 'c': 1})
+print(Counter(a=2, b=3, c=1)) #print Counter({'b': 3, 'a': 2, 'c': 1})
+#An empty Counter can be constructed with no arguments and populated via the update() method
+emptycountervariable = Counter()
+print("Empty variable no counts",emptycountervariable) #print Empty variable no counts Counter()
+emptycountervariable.update("abcdaab")
+print("First count from emptycountervariable variable is now non-empty", emptycountervariable) #print First count from empty variable no counts now non-empty Counter({'a': 3, 'b': 2, 'c': 1, 'd': 1})
+emptycountervariable.update("ad")
+print("Second count from emptycountervariable variable add a and add d", emptycountervariable) #print Second count from emptycountervariable variable is now non-empty Counter({'a': 4, 'b': 2, 'd': 2, 'c': 1})
+#A populated Counter values can be retrieved using the dictionary API.
+accessvalues = Counter("abcdaab")
+print(accessvalues) #print Counter({'a': 3, 'b': 2, 'c': 1, 'd': 1})
+for eachletter in "abcd":
+	print("{}:{}".format(eachletter, accessvalues[eachletter])) #print a:3\n b:2\n c:1\n d:1
+for key, value in accessvalues.items():
+	print(key, value) #print a 3\n b 2\n c 1\n d 1
+#addinum to #A populated Counter values can be retrieved using the dictionary API.
+countthestring = "abcdaab"
+accessvalues = Counter(countthestring)
+print(accessvalues) #print Counter({'a': 3, 'b': 2, 'c': 1, 'd': 1})
+for eachletter in "abcd":
+	print("{}:{}".format(eachletter, accessvalues[eachletter])) #print a:3\n b:2\n c:1\n d:1
+for key, value in accessvalues.items():
+	print(key, value) #print a 3\n b 2\n c 1\n d 1
+for eachcountthestring in countthestring:
+	print(eachcountthestring, accessvalues[eachcountthestring]) #print a 3\n b 2\n c 1\n d 1\n a 3\n a 3\ b 2
+#The elements() method returns an iterator that produces all of the items in Counter.
+elementsvariable = Counter("extremely")
+print(elementsvariable) #print Counter({'e': 3, 'x': 1, 't': 1, 'r': 1, 'm': 1, 'l': 1, 'y': 1})
+print(elementsvariable["e"]) #print 3
+print(elementsvariable["z"]) #print 0
+print(list(elementsvariable.elements())) #print ['e', 'e', 'e', 'x', 't', 'r', 'm', 'l', 'y']
+#Use most_common() to produce a sequence of the n most frequently encountered input values and their respective counts
+words2 = "The late Steve Jobs said, \"You can\'t connect the dots looking forward; you can only connect them looking backwards. So you have to trust that the dots will somehow connect in your future.\" There are sayings regarding a person living a bad life. It can\'t get worse; it can only get better. Everyone must experience hell before heaven. Frustrations, mistakes, and pain are part of growing up. Be prepared for failures before success. Everyone has bad years and everyone has good years. You win some and you lose some. Sometimes bad years are nobody\'s fault--it\'s life. The bottom line is everything we do today affects tomorrow; in particular, if life is bad today, then do something for a good life tomorrow. Trust hard work intelligently, good luck, and favorable timing everything goes well soon. There is a light at the end of the tunnel. Hope for the best.I share my past bad years which became future good years.  I hope my past history dictates what happens for the rest of 2017 and beyond because I\'m unemployed and I live with my parents. <b>2000.</b> The Y2K catastrophe never happened. My company moved to a new building for which everyone settled in slowly. The dot-com stock market crashed creating a recession.  Most people didn\'t know how to handle the uncertainty beginning a new millennium which included myself. Fanime Con 2000 which took place at a convention center and held for four days both for the first time was bad. Anime Expo 2000 which took place at Disneyland could be considered one of the worse big anime conventions in anime convention history."
+counterletters = Counter(words2)
+for letters, count in counterletters.most_common(5):
+	print(letters, count) #print ' ' 270\n e 153\n o 114\n t 95\n n 94
+wordslist2 = words2.split()
+print(wordslist2) #print counterwords string in a list each item is a word
+counterwordslist2 = Counter(wordslist2)
+for words, count in counterwordslist2.most_common(5):
+	print(words, count) #print the 9\n a 8\n and 7\n for 7\n bad 5
+for words, count in counterwordslist2.most_common()[:-5-1:-1]:
+	print(words, count) #print history. 1\n conventions 1\n big 1\n worse 1\n one 1 Five least common words
+#Arithmetic add, subtract, intersect, union Counter
+collection1 = Counter(["a","b","c","a","b","b"])
+collection2 = Counter("alphabet")
+print(collection1) #print Counter({'b': 3, 'a': 2, 'c': 1})
+print(collection2) #print Counter({'a': 2, 'l': 1, 'p': 1, 'h': 1, 'b': 1, 'e': 1, 't': 1})
+print("Add collection1 and collection2", collection1+collection2) #print Add collection1 and collection2 Counter({'a': 4, 'b': 4, 'c': 1, 'l': 1, 'p': 1, 'h': 1, 'e': 1, 't': 1})
+print("Subtract collection1 and collection2", collection1-collection2) #print Subtract collection1 and collection2 Counter({'b': 2, 'c': 1})
+print("Intersection takes positive minimums collection1 and collection2", collection1 & collection2) #print Intersection takes positive minimums collection1 and collection2 Counter({'a': 2, 'b': 1})
+print("Union takes maximums collection1 and collection2", collection1 | collection2) #print Union takes maximums collection1 and collection2 Counter({'b': 3, 'a': 2, 'c': 1, 'l': 1, 'p': 1, 'h': 1, 'e': 1, 't': 1})
+
+#https://data-flair.training/blogs/python-counter/
+lettercounter = Counter(["a","b","c","a","b","a"])
+print(lettercounter) #print Counter({'a': 3, 'b': 2, 'c': 1})
+print(lettercounter["a"]) #print 3
+lettercounterlist = Counter(["a","b","c","a","b","a"])
+print(lettercounterlist) #print Counter({'a': 3, 'b': 2, 'c': 1})
+print(lettercounterlist["a"]) #print 3
+lettercountertuple = Counter(("a","b","c","a","b","a"))
+print(lettercountertuple) #print Counter({'a': 3, 'b': 2, 'c': 1})
+print(lettercountertuple["a"]) #print 3
+letterstring = Counter("Hello")
+print(letterstring) #print Counter({'l': 2, 'H': 1, 'e': 1, 'o': 1})
+print(letterstring["l"]) #print 2
+lettercounterset = Counter({"a","b","c","a","b","a"})
+print(lettercounterset) #print Counter({'b': 1, 'a': 1, 'c': 1})
+print(lettercounterset["a"]) #print 1
+lettercounterdictionary = Counter({"a":3, "b":2, "c":1})
+print(lettercounterdictionary) #print Counter({'a': 3, 'b': 2, 'c': 1})
+print(lettercounterdictionary["a"]) #print 3
+lettercounterkeywordarguments = Counter(a=3, b=2, c=1)
+print(lettercounterkeywordarguments) #print Counter({'a': 3, 'b': 2, 'c': 1})
+print(lettercounterkeywordarguments["a"]) #print 3
+hellocounter = Counter()
+print(hellocounter) #print Counter()
+hellocounter.update("Hello")
+print(hellocounter) #print Counter({'l': 2, 'H': 1, 'e': 1, 'o': 1})
+hellocounter.update("Goodbye")
+print(hellocounter) #print Counter({'o': 3, 'e': 2, 'l': 2, 'H': 1, 'G': 1, 'd': 1, 'b': 1, 'y': 1})
+hellocounter.update({"z":50})
+print(hellocounter) #print Counter({'z': 50, 'o': 3, 'e': 2, 'l': 2, 'H': 1, 'G': 1, 'd': 1, 'b': 1, 'y': 1})
+#start 5.  Accessing Counts in Python
