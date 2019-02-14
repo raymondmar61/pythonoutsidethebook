@@ -204,4 +204,72 @@ hellocounter.update("Goodbye")
 print(hellocounter) #print Counter({'o': 3, 'e': 2, 'l': 2, 'H': 1, 'G': 1, 'd': 1, 'b': 1, 'y': 1})
 hellocounter.update({"z":50})
 print(hellocounter) #print Counter({'z': 50, 'o': 3, 'e': 2, 'l': 2, 'H': 1, 'G': 1, 'd': 1, 'b': 1, 'y': 1})
-#start 5.  Accessing Counts in Python
+print(hellocounter["o"]) #print 3
+print(hellocounter["w"]) #print 0
+for key, value in hellocounter.items():
+	print(key, value) #print H 1\n e 2\n l 2\n o 3\n G 1\n d 1\n b 1\n y 1\n z 50
+print(hellocounter.most_common(3)) #print [('z', 50), ('o', 3), ('e', 2)]
+print(hellocounter.most_common(5)) #print [('z', 50), ('o', 3), ('e', 2), ('l', 2), ('H', 1)]
+print(hellocounter.most_common()) #print [('z', 50), ('o', 3), ('e', 2), ('l', 2), ('H', 1), ('G', 1), ('d', 1), ('b', 1), ('y', 1)]
+valuescount = Counter("Hello")
+for n in valuescount.elements():
+	print(n, valuescount[n]) #print H 1\n e 1\n l 2\n l 2\n o 1.  The elements() method returns an iterator object for the values in the Counter.  Note l 2 is printed twice because there are two l's.
+for n in "Help":
+	print(n, valuescount[n]) #print H 1\n e 1\n l 2\n p 0
+print(valuescount.most_common()) #print [('l', 2), ('H', 1), ('e', 1), ('o', 1)]
+valuescount["H"]=234
+print(valuescount.most_common()) #print [('H', 234), ('l', 2), ('e', 1), ('o', 1)]
+valuescount.clear()
+print(valuescount.most_common()) #print []
+mathcounter1 = Counter({"a":3, "b":2, "c":1})
+mathcounter2 = Counter({"c":3, "d":2, "e":1})
+print(mathcounter1+mathcounter2) #print Counter({'c': 4, 'a': 3, 'b': 2, 'd': 2, 'e': 1})
+print(mathcounter1-mathcounter2) #print Counter({'a': 3, 'b': 2}) mathcounter1-mathcounter2 doesn't have c because 1-3=-2.  Negative counts mean nothing.
+print(mathcounter2-mathcounter1) #print Counter({'c': 2, 'd': 2, 'e': 1}) mathcounter2-mathcounter1 doesn't have a and b.  c is 3-1 or 2.
+#print(mathcounter1.subtract(mathcounter2))
+mathcounter1.subtract(mathcounter2)
+print(mathcounter1) #print Counter({'a': 3, 'b': 2, 'e': -1, 'c': -2, 'd': -2})
+mathcounter1 = Counter({"a":3, "b":2, "c":1})
+mathcounter2 = Counter({"c":3, "d":2, "e":1})
+mathcounter2.subtract(mathcounter1)
+print(mathcounter2) #print Counter({'c': 2, 'd': 2, 'e': 1, 'b': -2, 'a': -3})
+print("\n")
+mathcounter1 = Counter({"a":3, "b":2, "c":1})
+mathcounter2 = Counter({"c":3, "d":2, "e":1})
+print(mathcounter1&mathcounter2) #print Counter({'c': 1}) & and
+print(mathcounter2&mathcounter1) #print Counter({'c': 1}) & and
+print(mathcounter1|mathcounter2) #print Counter({'a': 3, 'c': 3, 'b': 2, 'd': 2, 'e': 1}) | or
+print(mathcounter2|mathcounter1) #print Counter({'c': 3, 'a': 3, 'd': 2, 'b': 2, 'e': 1}) | or
+
+#Stack Overflow get a count of dictionary keys with values greater than some integer in python
+nouns = {"house":2, "water":41, "Joey":409, "boy":3, "girl":1}
+for key, value in nouns.items():
+	if value > 50:
+		print(key+" is greater than 50")
+	elif value > 20:
+		print(key+" is greater than 20")
+	elif value > 2:
+		print(key+" is greater than 2")
+	elif value > 0:
+		print(key+" is greater than 0")
+	else:
+		print(key+" is nothing")
+valuescount = Counter(nouns)
+for n in valuescount.elements():
+	print(n) #prints elements number of times; e.g. house\n house\n . . . boy\n boy\n boy\n girl
+for n in valuescount.values():
+	print(n) #prints 2\n 41\n 409\n 3\n 1
+tallylist = []
+for key, value in nouns.items():
+	if value > 50:
+		tallylist.append(">50")
+	elif value > 20:
+		tallylist.append(">20")
+	elif value > 2:
+		tallylist.append(">2")
+	elif value > 0:
+		tallylist.append(">0")
+	else:
+		tallylist.append("nothing")
+tallylistcounter = Counter(tallylist)
+print(tallylistcounter) #print Counter({'>0': 2, '>20': 1, '>50': 1, '>2': 1})
