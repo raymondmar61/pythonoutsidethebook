@@ -55,7 +55,22 @@ def globallocalvariable3():
 	print(s3)
 s3 = "Python3"
 globallocalvariable3() #print Python3\n Perl 3
-print(s3) Perl3
+print(s3) #print Perl3
+def unknownnumberofnumbersparameters(firstparameter, *manyparameters):
+	print("firstparameter",firstparameter)
+	print("manyparameters",manyparameters)
+	print("sum manyparameters",sum(manyparameters))
+unknownnumberofnumbersparameters(1,200,300,400,500) #print firstparameter 1\n manyparameters (200, 300, 400, 500)\n sum manyparameters 1400
+x = [3, 5, 7]
+unknownnumberofnumbersparameters(11,*x) #print firstparameter 11\n manyparameters (3, 5, 7)\n sum manyparameters 15
+def unknownnumberofkeywordparameters(firstkeyword, *manykeywords):
+	print("firstkeyword no plus sign",firstkeyword) 
+	print("manykeywords no plus sign",manykeywords)
+unknownnumberofkeywordparameters("first word","wordone","wordtwo","wordthree") #print firstkeyword no plus sign first word\n manykeywords no plus sign ('wordone', 'wordtwo', 'wordthree')
+def fourkeys(a, b, x, y):
+	print(a, b, x, y)
+dictionarykeys = {"a":"append", "b":"block", "x":"extract", "y":"yes"}
+fourkeys(**dictionarykeys) #print append block extract yes
 
 #https://www.geeksforgeeks.org/g-fact-41-multiple-return-values-in-python/
 #There are different ways to return multiple values from a function.  They're using an object using a class, using a tuple, using a list, and using a dictionary.

@@ -157,3 +157,10 @@ print([[row[i] for row in matrix] for i in range(0,4)]) #print [[1, 5, 9], [2, 6
 matrix = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]
 print(list(zip(*matrix))) #print [(1, 5, 9), (2, 6, 10), (3, 7, 11), (4, 8, 12)]
 print(zip(*matrix)) #print <zip object at 0x7ff55d585f88>
+
+letterhundreds = [("a",232), ("b",343), ("c", 543), ("d",23)]
+print(letterhundreds) #print [('a', 232), ('b', 343), ('c', 543), ('d', 23)]
+pivotletterhundreds = list(zip(*letterhundreds))
+print(pivotletterhundreds) #print [('a', 'b', 'c', 'd'), (232, 343, 543, 23)]
+print(pivotletterhundreds[0]) #print ('a', 'b', 'c', 'd')
+print(list(pivotletterhundreds[0])) #print ['a', 'b', 'c', 'd']
