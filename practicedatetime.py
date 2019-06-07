@@ -75,3 +75,24 @@ print(timetodayam) #print 10:30 AM
 timetodaypm = datetime.strptime("22:30", "%H:%M").strftime("%I:%M %p")
 print(timetodaypm) #print 10:30 PM
 print(timetodaypm.lower()) #print 10:30 pm
+
+#https://stackoverflow.com/questions/12033905/using-python-to-create-an-average-out-of-a-list-of-times
+#You don't want to average times on hours, minutes, and seconds.  Convert all times into seconds, calculate the average, and convert back to hours, minutes, and seconds.
+from datetime import timedelta
+
+def averagetime(timelist):
+	timeinseconds = []
+	for eachtimelist in timelist:
+		h, m, s = map(int, eachtimelist.split(":"))
+		timeinseconds.append((h*3600)+(m*60)+s)
+	#print(timeinseconds)
+	#print(sum(timeinseconds)/len(timeinseconds))
+	averagetime = sum(timeinseconds)/len(timeinseconds)
+	#days = divmod(averagetime, 86400) # Get days (without [0]!)
+	#hours = divmod(days[1], 3600) # Use remainder of days to calc hours
+	hours = divmod(averagetime, 3600) # Use remainder of seconds to calc hours
+	minutes = divmod(hours[1], 60) # Use remainder of hours to calc minutes
+	seconds = divmod(minutes[1], 1) # Use remainder of minutes to calc seconds
+	return ("Average time is {} hours, {} minutes, and {} seconds".format(int(hours[0]), int(minutes[0]), seconds[0]))	
+print(averagetime(["00:59:00","1:1:00"])) #print Average time is 1 hours, 0 minutes, and 0.0 seconds
+print(averagetime(["00:59:00","1:1:00","1:23:54"])) #print Average time is 1 hours, 7 minutes, and 58.0 seconds
