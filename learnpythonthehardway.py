@@ -45,6 +45,53 @@ print("He's {} pounds heavy." .format(myweight,"d")) #print He's 180 pounds heav
 print("He's got %s eyes and %s hair." %(myeyes, myhair)) #print He's got blue eyes and brown hair.
 print("His teeth are usually {} depending on the coffee." .format(myteeth)) #print His teeth are usually white depending on the coffee.
 print("If I add {}, {}, and {}, I get {}." .format(myage, myheight, myweight, myage+myheight+myweight)) #print If I add 35, 74, and 180, I get 289.
+print("Exercise 6: Strings And Text")
+x = "There are %d types of people." %10
+binary = "binary"
+donot = "don't"
+y = "Those who know %s and those who %s." %(binary, donot)
+print(x) #print There are 10 types of people.
+print(y) #print Those who know binary and those who don't.
+print("I said: %r." %x) #print I said: 'There are 10 types of people.'.  #RM:  %r is for debugging which displays the raw data of the variable
+print("I also said: '%s'." %y) #print I also said: 'Those who know binary and those who don't.'.
+print("I also said: %s." %y) #print I also said: Those who know binary and those who don't..
+hilarious = False
+jokeevaluation = "Isn't that joke so funny?! %r"
+print(jokeevaluation % hilarious) #print Isn't that joke so funny?! False
+w = "This is the left side of . . . "
+e = "a string with a right side."
+print(w+e) #print This is the left side of . . . a string with a right side.
+print("Exercise 7:  More Printing")
+print("Mary had a little lamb.") #print Mary had a little lamb.
+print("Its fleece was white as %s." %"snow") #print Its fleece was white as snow.
+print("And everywhere that Mary went") #print And everywhere that Mary went
+print("."*10) #print ..........
+end1 = "C"
+end2 = "h"
+end3 = "e"
+end4 = "e"
+end5 = "s"
+end6 = "e"
+end7 = "B"
+end8 = "u"
+end9 = "r"
+end10 = "g"
+end11 = "e"
+end12 = "r"
+print(end1+end2+end3+end4+end5+end6,end7+end8+end9+end10+end11+end12) #print Cheese Burger
+print(end1+end2+end3+end4+end5+end6+end7+end8+end9+end10+end11+end12) #print CheeseBurger
+number1 = 500
+number2 = 743
+print(number1,number2) #print 500 743
+print(number1+number2) #print 1243
+#start exercise 8
+
+
+
+
+
+
+
 
 
 
