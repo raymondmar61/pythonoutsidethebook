@@ -1,6 +1,7 @@
 #https://docs.python.org/3.5/library/itertools.html, https://stackoverflow.com/questions/41680388/how-do-i-iterate-through-combinations-of-a-list, https://stackoverflow.com/questions/16384109/iterate-over-all-combinations-of-values-in-multiple-lists-in-python
 #RM:  there are more functions in itertools.  I selected the product(), combinations(), permutations(), chain(), chain.from_iterable().  08/02/18:  there are more itertools below the selected functions.
 
+
 #product creates a cartesian products from a series of iterables
 import itertools
 firstlist = [1,5,8]
@@ -136,13 +137,13 @@ print(next(iterator)) #print square
 print(next(iterator)) #print triangle
 
 #The repeat iterators will return an object an object over and over again forever unless you set its times argument.  repeat(object[,times])  RM:  brackets means optional
-from itertools import repeat
-iterator = repeat(5,5)
-print(next(iterator)) #print 5
-print(next(iterator)) #print 5
-print(next(iterator)) #print 5
-print(next(iterator)) #print 5
-print(next(iterator)) #print 5
+# from itertools import repeat
+# iterator = repeat(5,5)
+# print(next(iterator)) #print 5
+# print(next(iterator)) #print 5
+# print(next(iterator)) #print 5
+# print(next(iterator)) #print 5
+# print(next(iterator)) #print 5
 print(next(iterator)) #error message StopIteration
 from itertools import repeat
 for i in repeat("spam",4):
@@ -374,3 +375,74 @@ def grouper(inputlist, n, fillvalue=None):
 numberlist = [1,2,3,4,5,6,7,8,9,10]
 #print(grouper(numberlist,4)) #print <itertools.zip_longest object at 0x7f422d6b9d18>
 print(list(grouper(numberlist,4))) #print [(1, 2, 3, 4), (5, 6, 7, 8), (9, 10, None, None)]
+
+#group by https://stackoverflow.com/questions/773/how-do-i-use-pythons-itertools-groupby
+#data must be sorted first.
+from itertools import groupby
+things = [("vehicle", "speed boat"), ("animal", "duck"), ("plant", "cactus"), ("animal", "bear"), ("vehicle", "school bus")]
+print(things) #print [('vehicle', 'speed boat'), ('animal', 'duck'), ('plant', 'cactus'), ('animal', 'bear'), ('vehicle', 'school bus')]
+things.sort() #data must be sorted first.
+print(things) #print [('animal', 'bear'), ('animal', 'duck'), ('plant', 'cactus'), ('vehicle', 'school bus'), ('vehicle', 'speed boat')]
+for key, group in groupby(things, lambda x: x[0]):
+	print("key {}. group{}".format(key, group))
+	for thing in group:
+		print("thing[0] {}".format(thing[0]))
+		print("A {} is a {}".format(thing[1], key))
+		print("A {} is a {}".format(thing[1], thing[0]))
+'''
+key animal. group<itertools._grouper object at 0x7f2a1ca90518>
+thing[0] animal
+A bear is a animal
+A bear is a animal
+thing[0] animal
+A duck is a animal
+A duck is a animal
+key plant. group<itertools._grouper object at 0x7f2a1e786908>
+thing[0] plant
+A cactus is a plant
+A cactus is a plant
+key vehicle. group<itertools._grouper object at 0x7f2a1e786ac8>
+thing[0] vehicle
+A school bus is a vehicle
+A school bus is a vehicle
+thing[0] vehicle
+A speed boat is a vehicle
+A speed boat is a vehicle
+'''
+#things is a list of tuples where the first item in each tuple is the group the second item belongs to.
+#The groupby() function takes two arguments: (1) the data to group things and (2) the function to group it with lambda x: x[0].  lambda x: x[0] tells groupby() to use the first item in each tuple as the grouping key.
+#The first for statement groupby returns three (key, group iterator) pairs - once for each unique key which are animal, plant, and vehicle. You can use the returned iterator to iterate over each individual item in that group.
+for key, group in groupby(things, lambda x: x[0]):
+	listofthings = " and ".join([thing[1] for thing in group])
+	print(key + "s:  "+listofthings+".")
+'''
+animals:  bear and duck.
+plants:  cactus.
+vehicles:  school bus and speed boat.
+'''
+#itertools.groupby is a tool for grouping items.
+for key, group in groupby("AAAABBBCCDAABBB"):
+	print(key)
+	print(group)
+	#print(list(group))
+	print(key+":",", ".join(list(group)))
+'''
+A
+<itertools._grouper object at 0x7f4409bb1550>
+A: A, A, A, A
+B
+<itertools._grouper object at 0x7f440b8a7908>
+B: B, B, B
+C
+<itertools._grouper object at 0x7f4409bb1550>
+C: C, C
+D
+<itertools._grouper object at 0x7f440b8a7908>
+D: D
+A
+<itertools._grouper object at 0x7f4409bb1550>
+A: A, A
+B
+<itertools._grouper object at 0x7f440b8a7908>
+B: B, B, B
+'''
