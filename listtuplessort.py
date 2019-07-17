@@ -75,3 +75,18 @@ b = sorted(sorted(a, key = lambda x : x[0]), key = lambda x : x[1], reverse = Tr
 print(b) #print [('Abel', 3), ('Al', 2), ('Carol', 2), ('Zeke', 2), ('Bill', 1), ('Chris', 1)]
 c = sorted(a, key = lambda x: (-x[1], x[0]))
 print(c) #print [('Abel', 3), ('Al', 2), ('Carol', 2), ('Zeke', 2), ('Bill', 1), ('Chris', 1)]
+
+things = [("vehicle", "speed boat"), ("animal", "duck"), ("plant", "cactus"), ("animal", "bear"), ("vehicle", "school bus")]
+print(things) #print [('vehicle', 'speed boat'), ('animal', 'duck'), ('plant', 'cactus'), ('animal', 'bear'), ('vehicle', 'school bus')]
+things.sort() #data must be sorted first.
+print(things) #print [('animal', 'bear'), ('animal', 'duck'), ('plant', 'cactus'), ('vehicle', 'school bus'), ('vehicle', 'speed boat')]
+
+letters = ["AAAABBBCCDAABBB"]
+print(letters) #print ['AAAABBBCCDAABBB']
+lettersstring = "".join(letters)
+print(lettersstring) #print AAAABBBCCDAABBB
+print(type(lettersstring)) #print <class 'str'>
+letterslist = [x for x in lettersstring]
+print(letterslist) #print ['A', 'A', 'A', 'A', 'B', 'B', 'B', 'C', 'C', 'D', 'A', 'A', 'B', 'B', 'B']
+letterslist.sort()
+print(letterslist) #print ['A', 'A', 'A', 'A', 'A', 'A', 'B', 'B', 'B', 'B', 'B', 'B', 'C', 'C', 'D']

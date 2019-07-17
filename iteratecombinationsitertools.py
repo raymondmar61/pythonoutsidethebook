@@ -424,25 +424,70 @@ vehicles:  school bus and speed boat.
 for key, group in groupby("AAAABBBCCDAABBB"):
 	print(key)
 	print(group)
-	#print(list(group))
-	print(key+":",", ".join(list(group)))
+	#print(key+":",", ".join(list(group)))
+	listgroupvariable = list(group)
+	print(key+":",", ".join(listgroupvariable))
+	print(listgroupvariable)
 '''
 A
-<itertools._grouper object at 0x7f4409bb1550>
+<itertools._grouper object at 0x7fb35a221518>
 A: A, A, A, A
+['A', 'A', 'A', 'A']
 B
-<itertools._grouper object at 0x7f440b8a7908>
+<itertools._grouper object at 0x7fb35a2215c0>
 B: B, B, B
+['B', 'B', 'B']
 C
-<itertools._grouper object at 0x7f4409bb1550>
+<itertools._grouper object at 0x7fb35bf17908>
 C: C, C
+['C', 'C']
 D
-<itertools._grouper object at 0x7f440b8a7908>
+<itertools._grouper object at 0x7fb35a221518>
 D: D
+['D']
 A
-<itertools._grouper object at 0x7f4409bb1550>
+<itertools._grouper object at 0x7fb35bf17908>
 A: A, A
+['A', 'A']
 B
-<itertools._grouper object at 0x7f440b8a7908>
+<itertools._grouper object at 0x7fb35a2215c0>
 B: B, B, B
+['B', 'B', 'B']
 '''
+letters = ["AAAABBBCCDAABBB"]
+print(letters) #print ['AAAABBBCCDAABBB']
+lettersstring = "".join(letters)
+print(lettersstring) #print AAAABBBCCDAABBB
+print(type(lettersstring)) #print <class 'str'>
+letterslist = [x for x in lettersstring]
+print(letterslist) #print ['A', 'A', 'A', 'A', 'B', 'B', 'B', 'C', 'C', 'D', 'A', 'A', 'B', 'B', 'B']
+letterslist.sort()
+print(letterslist) #print ['A', 'A', 'A', 'A', 'A', 'A', 'B', 'B', 'B', 'B', 'B', 'B', 'C', 'C', 'D']
+for key, group in groupby(letterslist):
+	print(key)
+	print(group)
+	#print(key+":",", ".join(list(group)))
+	listgroupvariable = list(group)
+	print(key+":",", ".join(listgroupvariable))
+	print(listgroupvariable)
+'''
+A
+<itertools._grouper object at 0x7f69b62265c0>
+A: A, A, A, A, A, A
+['A', 'A', 'A', 'A', 'A', 'A']
+B
+<itertools._grouper object at 0x7f69b7f237f0>
+B: B, B, B, B, B, B
+['B', 'B', 'B', 'B', 'B', 'B']
+C
+<itertools._grouper object at 0x7f69b62265c0>
+C: C, C
+['C', 'C']
+D
+<itertools._grouper object at 0x7f69b7f237f0>
+D: D
+['D']
+'''
+letters = ["AAAABBBCCDAABBB"]
+numberofrepetitions = [(key,len(list(group))) for key, group in groupby(letters)]
+print(numberofrepetitions) #print [('AAAABBBCCDAABBB', 1)]
