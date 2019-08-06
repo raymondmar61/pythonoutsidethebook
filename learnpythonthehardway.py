@@ -1,3 +1,4 @@
+#Learn Python The Hard Way, 3rd Edition .pdf
 #http://learnpythonthehardway.org/book/
 #Do Not Copy-Paste
 #You must type each of these exercises in, manually. If you copy and paste, you might as well just not even do them.  The point of these exercises is to train your hands, your brain, and your mind in how to read, write, and see code. If you copy-paste, you are cheating yourself out of the effectiveness of the lessons.
@@ -84,17 +85,113 @@ number1 = 500
 number2 = 743
 print(number1,number2) #print 500 743
 print(number1+number2) #print 1243
-#start exercise 8
-
-
-
-
-
-
-
-
-
-
+print("Exercise 8: Printing, Printing")
+formatter = "%r %r %r %r"
+print(formatter) #print %r %r %r %r
+print(formatter %(1, 2, 3, 4)) #print 1 2 3 4
+print(formatter %("one", "two", "three", "four")) #print 'one' 'two' 'three' 'four'
+print(formatter %(True, False, False, True)) #print True False False True
+print(formatter %(formatter, formatter, formatter, formatter)) #print '%r %r %r %r' '%r %r %r %r' '%r %r %r %r' '%r %r %r %r'
+print(formatter %("I had this thing.","That you could type up right.", "But it didn't sing.", "So I said goodnight.")) #print 'I had this thing.' 'That you could type up right.' "But it didn't sing." 'So I said goodnight.'
+print("Exercise 9: Printing, Printing, Printing")
+days = "Mon Tue Wed Thu Fri Sat Sun"
+months = "Jan\nFebMar\nApr\nMay\nJun\nJul\nAug"
+print("Here are the days: ",days) #orint Here are the days:  Mon Tue Wed Thu Fri Sat Sun
+print("Here are the months:",months) 
+'''
+Here are the months: Jan
+FebMar
+Apr
+May
+Jun
+Jul
+Aug
+''' 
+print("""
+There's something going on here.
+With the three double-quotes.
+We'll be able to type as much as we like.
+Even 4 lines if we want, or 5, or 6.
+""")
+'''
+There's something going on here.
+With the three double-quotes.
+We'll be able to type as much as we like.
+Even 4 lines if we want, or 5, or 6.
+'''
+print("""
+	There's something going on here.
+	With the three double-quotes.
+	We'll be able to type as much as we like.
+	Even 4 lines if we want, or 5, or 6.
+	""")
+'''
+	There's something going on here.
+	With the three double-quotes.
+	We'll be able to type as much as we like.
+	Even 4 lines if we want, or 5, or 6.
+'''
+print("Exercise 10:  What Was That?")
+tabby_cat = "\t I'm tabbed in."
+persian_cat = "I'm split\non a line."
+backslash_cat = "I'm \\ a \\ cat."
+fat_cat = """
+I'll do a list:
+\t* Cat food
+\t* Fishies
+\t* Catnip\n\t* Grass
+"""
+print(tabby_cat) #print 	I'm tabbed in.
+print(persian_cat) #print I'm split\n on a line.
+print(backslash_cat) #print I'm \ a \ cat.
+print(fat_cat)
+"""
+I'll do a list:
+	* Cat food
+	* Fishies
+	* Catnip
+	* Grass
+"""
+# while True:
+# 	for i in ["/","-","|",",","\\","|"]:
+# 		print("%s\r"%i,)
+see = "Do you see?"
+print("%s" %see) #print Do you see?
+print("%r" %see) #print 'Do you see?'.  %r prints out the raw representation including the original escape sequences.
+print("Exercise 11:  Asking Questions")
+print("How old are you?"),  #RM:  tutorial says a comma at the end of the print line doesn't start a new line.  It doesn't work.
+#age = input()
+age = 45
+print("How tall are you?",)
+#height = input()
+height = 45
+print("How much do you weight?",)
+#weight = input()
+weight = 45
+print("So, you're %r old, %r tall and %r heavy." %(age, height, weight)) #print So, you're 45 old, 45 tall and 45 heavy.
+print("Give me a number")
+#inputnumber = int(input())
+inputnumber = 45
+print("The number is %r" %inputnumber) #print The number is 45
+#instructor says input() has security problems.  Use raw_input().  raw_input() doesn't work for python3.6.
+print("Exercise 12:  Prompting People")
+#y = input("Name? ") #display Name? .  Saves result into variable y.
+y = "Raymond"
+#age = input("How old are you? ")
+age = (45)
+#height = input("How tall are you? ")
+height = (68)
+#weight = input("How much do you weigh? ")
+weight = (45)
+print("So, you're %r old, %r tall and %r heavy." %(age, height, weight)) #print So, you're 45 old, 68 tall and 45 heavy.
+print("Exercise 13:  Parameters, Unpacking, Variables")
+from sys import argv
+script, first, second, third = argv
+#run python in Linux type the following:  python3.6 first, 2nd, 3rd
+print("The script is called:", script) #print The script is called: learnpythonthehardway.py
+print("Your first variable is:", first) #print Your first variable is: first
+print("Your second variable is:", second) #print Your second variable is: 2nd
+print("Your third variable is:", third) #print Your third variable is: 3rd
 
 
 
