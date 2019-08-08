@@ -185,14 +185,37 @@ height = (68)
 weight = (45)
 print("So, you're %r old, %r tall and %r heavy." %(age, height, weight)) #print So, you're 45 old, 68 tall and 45 heavy.
 print("Exercise 13:  Parameters, Unpacking, Variables")
-from sys import argv
-script, first, second, third = argv
-#run python in Linux type the following:  python3.6 first, 2nd, 3rd
-print("The script is called:", script) #print The script is called: learnpythonthehardway.py
-print("Your first variable is:", first) #print Your first variable is: first
-print("Your second variable is:", second) #print Your second variable is: 2nd
-print("Your third variable is:", third) #print Your third variable is: 3rd
-
-
-
-
+# from sys import argv
+# script, first, second, third = argv
+# #run python in Linux type the following:  python3.6 first, 2nd, 3rd
+# print("The script is called:", script) #print The script is called: learnpythonthehardway.py
+# print("Your first variable is:", first) #print Your first variable is: first
+# print("Your second variable is:", second) #print Your second variable is: 2nd
+# print("Your third variable is:", third) #print Your third variable is: 3rd
+print("Exercise 14:  Prompting And Passing")
+# username = input("What is your name? ")
+# script = input("Share a favorite movie. ")
+# like = input("Do you like yourself, %s? " %username)
+# location = input("Where do you live, "+username+" ")
+# computer = input("What kind of computer do you have?  Desktop or laptop? ")
+# print("""
+# 	Alright, so you said %s about liking me.
+# 	You live in %s.  Not sure where that is.
+# 	And you have a %s computer.  Nice.
+# 	""" %(like.lower(), location, computer.lower()))
+print("Exercise 15:  Reading Files")
+filename = "exercise15sample.txt"
+with open(filename) as fileobject:
+	contents = fileobject.read()
+	print(contents)
+with open(filename) as fileobject:
+	contents = fileobject.read()
+	print(contents.rstrip()) #rstrip() method removes or strips any whitespace characters from the right side of a string.
+with open(filename) as fileobject:
+	lines = fileobject.readlines() #readlines() method takes each line from the file and stores it in a list.
+print(lines) #print ['This is stuff I typed into a file.\n', 'It is really cool stuff.\n', 'Lots and lots of fun to have in here.']
+nospacesbetweenlines = ""
+for line in lines:
+	print(line.rstrip())
+	nospacesbetweenlines += line.rstrip()
+print(nospacesbetweenlines) #print This is stuff I typed into a file.It is really cool stuff.Lots and lots of fun to have in here.
