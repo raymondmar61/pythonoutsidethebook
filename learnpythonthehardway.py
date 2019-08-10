@@ -204,10 +204,11 @@ print("Exercise 14:  Prompting And Passing")
 # 	And you have a %s computer.  Nice.
 # 	""" %(like.lower(), location, computer.lower()))
 print("Exercise 15:  Reading Files")
+#The keyword with closes the file once access to it is no longer needed. Notice how we call open() in this program but not close().
 filename = "exercise15sample.txt"
 with open(filename) as fileobject:
 	contents = fileobject.read()
-	print(contents)
+	print(contents) #print This is stuff I typed into a file.\n It is really cool stuff.\n Lots and lots of fun to have in here.
 with open(filename) as fileobject:
 	contents = fileobject.read()
 	print(contents.rstrip()) #rstrip() method removes or strips any whitespace characters from the right side of a string.
@@ -219,3 +220,72 @@ for line in lines:
 	print(line.rstrip())
 	nospacesbetweenlines += line.rstrip()
 print(nospacesbetweenlines) #print This is stuff I typed into a file.It is really cool stuff.Lots and lots of fun to have in here.
+print("Exercise 16:  Reading And Writing Files")
+#"r" read mode, "w" write mode, "a" append mode, "r+" read and write mode, default is read mode
+filename = "exercise16sample.txt"
+#write = input("Enter text for %s " %filename)
+write = "howard jones"
+with open(filename, "w") as fileobject:
+	fileobject.write(write)
+	fileobject.write("""
+this is a test
+okay a test
+three lines
+		""")
+	print(fileobject) #print <_io.TextIOWrapper name='exercise16sample.txt' mode='w' encoding='UTF-8'>
+with open(filename, "r") as fileobject:	
+	contents = fileobject.read()
+	print(contents)
+	'''
+	howard jones
+	this is a test
+	okay a test
+	three lines
+	'''
+print("Exercise 17:  More Files")
+#create text file exercise17sample.txt.  Write the contents from Exercise 16 to text file text file exercise17sample.txt.
+#The open() function automatically creates the file you’re writing to if it doesn’t already exist. However, be careful opening a file in write mode ('w') because if the file does exist, Python will erase the file before returning the file object.
+filename = "exercise17sample.txt"
+with open(filename, "w") as fileobject:
+	for chapter16contents in contents:
+		fileobject.write(chapter16contents)
+with open(filename, "r") as fileobject:
+	contents = fileobject.read()
+	print(contents)
+	'''
+	howard jones
+	this is a test
+	okay a test
+	three lines
+	'''
+print("Exercise 18:  Names, Variables, Code, Functions")
+def printtwo(*args):
+	arg1, arg2 = args
+	print("arg1: %r, arg2: %r" %(arg1, arg2))
+printtwo("Zed",5) #print arg1: 'Zed', arg2: 5
+def printtwoagain(arg1, arg2):
+	print("arg1: %r, arg2: %r" %(arg1, arg2))
+printtwo("Zed2",52) #print arg1: 'Zed2', arg2: 52
+def printone(arg1):
+	print("arg1: %r" %arg1)
+printone("Zed3") #print arg1: 'Zed3'
+def printnone():
+	print("I got nothin'.")
+printnone() #print I got nothin'.
+print("Exercise 19:  Functions And Variables")
+def cheeseandcrackers(cheesecount, boxesofcrackers):
+	print("You have %d cheeses!" %cheesecount)
+	print("You have",boxesofcrackers,"boxes of crackers")
+cheeseandcrackers(20, 30) #return You have 20 cheeses!\n You have 30 boxes of crackers
+amountofcheese = 10
+amountofcrackers = 50
+cheeseandcrackers(amountofcheese, amountofcrackers) #return You have 10 cheeses!\n You have 50 boxes of crackers
+cheeseandcrackers(10+20, 5+6) #return You have 30 cheeses!\n  You have 11 boxes of crackers
+cheeseandcrackers(amountofcheese + 100, amountofcrackers + 200) #return You have 110 cheeses!\n You have 250 boxes of crackers
+
+
+
+
+
+
+
