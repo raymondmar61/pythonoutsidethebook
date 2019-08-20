@@ -282,7 +282,49 @@ amountofcrackers = 50
 cheeseandcrackers(amountofcheese, amountofcrackers) #return You have 10 cheeses!\n You have 50 boxes of crackers
 cheeseandcrackers(10+20, 5+6) #return You have 30 cheeses!\n  You have 11 boxes of crackers
 cheeseandcrackers(amountofcheese + 100, amountofcrackers + 200) #return You have 110 cheeses!\n You have 250 boxes of crackers
-
+print("Exercise 19:  Functions And Variables")
+def cheeseandcrackers(cheesecount, boxesofcrackers):
+	print("You have %d cheeses!" %cheesecount)
+	print("You have",boxesofcrackers,"boxes of crackers!")
+cheeseandcrackers(20,30) #return You have 20 cheeses!\n You have 30 boxes of crackers!
+amountofcheese = 10
+amountofcrackers = 50
+cheeseandcrackers(amountofcheese, amountofcrackers) #return You have 10 cheeses!\n You have 50 boxes of crackers!
+cheeseandcrackers(10+20, 5+6) #return You have 30 cheeses!\n You have 11 boxes of crackers!
+cheeseandcrackers(amountofcheese+100, amountofcrackers + 1000) #return You have 110 cheeses!\n You have 1050 boxes of crackers!
+print("Exercise 20:  Functions And Files")
+#"r" read mode, "w" write mode, "a" append mode, "r+" read and write mode, default is read mode
+filename = "exercise20sample.txt"
+#erase all text in exercise20sample.txt for a blank file
+with open(filename, "w") as fileobject:
+	fileobject.write("")
+def functionwrite(n):
+	name = "howard jones"
+	with open(filename, "a") as fileobject:
+		fileobject.write("%s %d\n" %(name, n))
+for eachn in range(0,4):
+	functionwrite(eachn)
+with open(filename, "r") as fileobject:	
+	contents = fileobject.read()
+	print(contents)
+print("Exercise 21:  Functions Can Return Something")
+def add(a, b):
+	print("Adding %d + %d" %(a,b))
+	return a+b
+def subtract(a, b):
+	print("Subtracting",a,"-",b)
+	return a-b
+def multiply(a, b):
+	print("Multiplying {} * {}" .format(a,b))
+	return a*b
+def divide(a, b):
+	print("Dividing {} and {}" .format(a,b,".2f"))
+	return a/b
+age = add(30,5) #return Adding 30 + 5
+height = subtract(78,4) #return Subtracting 78 - 4
+weight = multiply(90,2) #return Multiplying 90 * 2
+iq = divide(100,2) #return Dividing 100 and 2
+print("Age: %d, Height: %d, Weight %d, IQ: %d" %(age, height, weight, iq)) #print Age: 35, Height: 74, Weight 180, IQ: 50
 
 
 
