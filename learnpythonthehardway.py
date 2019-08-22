@@ -325,9 +325,130 @@ height = subtract(78,4) #return Subtracting 78 - 4
 weight = multiply(90,2) #return Multiplying 90 * 2
 iq = divide(100,2) #return Dividing 100 and 2
 print("Age: %d, Height: %d, Weight %d, IQ: %d" %(age, height, weight, iq)) #print Age: 35, Height: 74, Weight 180, IQ: 50
+print("Exercise 22:  What Do You Know So Far?")
+print("Exercise 23:  Read Some Code")
+print("Exercise 24:  More Practice.  RM:  It's a review.")
+print("Let's practice everything.") #print Let's practice everything.
+print("You\'d need to know \'bout escapes with \\ that do \n newlines and \t tabs.")
+'''
+You'd need to know 'bout escapes with \ that do 
+ newlines and 	 tabs.
+'''
+poem = """
+\t *paragraph indent \\t tab* The lovely world
+with logic so firmly planted
+cannot discern\nthe needs of love
+nor comprehend passion from intuition
+and requires an explanation
+\n\t\twhere there is none.
+"""
+print("----------")
+print(poem)
+print("-"*10)
+'''
+----------
 
+	 *paragraph indent \t tab* The lovely world
+with logic so firmly planted
+cannot discern
+the needs of love
+nor comprehend passion from intuition
+and requires an explanation
 
+		where there is none.
 
-
-
-
+----------
+'''
+five = 10 - 2 + 3 - 6
+print("This should be five %s" %five) #print This should be five 5
+print("This should be five",five) #print This should be five 5
+print("This should be five {}" .format(five)) #print This should be five 5
+def secretformula(started):
+	jellybeans = started * 500
+	jars = jellybeans // 1000
+	crates = jars // 100
+	return jellybeans, jars, crates
+startpoint = 10000
+beans, jars, crates = secretformula(startpoint)
+print("With a starting point of: %d" %startpoint) #print With a starting point of: 10000
+print("We'd have {} beans, {} jars, and {} crates." .format(beans, jars, crates)) #print We'd have 5000000 beans, 5000 jars, and 50 crates.
+startpoint = startpoint /10
+print("We can also do that this way:") #print We can also do that this way:
+print("We'd have %d beans, %d jars, and %d crates." %(secretformula(startpoint))) #print We'd have 500000 beans, 500 jars, and 5 crates.
+print("Exercise 25:  Even More Practice")
+def breakwordssplit(stuff):
+	words = stuff.split(" ")
+	return words
+def sortwordssorted(words):
+	return sorted(words)
+def printfirstwordpop(words):
+	word = words.pop(0)
+	return word
+def printlastwordpop(words):
+	word = words.pop(-1)
+	return word
+def sortsentencecallfunctions(sentence):
+	#call functions breakwordssplit and sortwordssorted
+	words = breakwordssplit(sentence)
+	return sortwordssorted(words)
+def printfirstandlastcallfunctions(sentence):
+	#call functions breakwordssplit, printfirstwordpop, printlastwordpop
+	words = breakwordssplit(sentence)
+	print(printfirstwordpop(words))
+	print(printlastwordpop(words))
+def printfirstandlastsortedcallfunctions(sentence):
+	#call functions breakwordssplit, sortwordssorted, printfirstwordpop, printlastwordpop.  RM:  break words first, sort words second.
+	words = breakwordssplit(sentence)
+	words = sortwordssorted(words)
+	print(printfirstwordpop(words))
+	print(printlastwordpop(words))
+sentence = "All good things come to those who wait."
+print(breakwordssplit(sentence)) #print ['All', 'good', 'things', 'come', 'to', 'those', 'who', 'wait.']
+print(sortwordssorted(sentence)) #print [' ', ' ', ' ', ' ', ' ', ' ', ' ', '.', 'A', 'a', 'c', 'd', 'e', 'e', 'g', 'g', 'h', 'h', 'h', 'i', 'i', 'l', 'l', 'm', 'n', 'o', 'o', 'o', 'o', 'o', 'o', 's', 's', 't', 't', 't', 't', 'w', 'w']
+print(sortwordssorted(breakwordssplit(sentence))) #print ['All', 'come', 'good', 'things', 'those', 'to', 'wait.', 'who']
+print(printfirstwordpop(breakwordssplit(sentence))) #print All  RM:  pop is a function for lists.
+print(printlastwordpop(breakwordssplit(sentence))) #print wait.  RM:  pop is a function for lists.
+printfirstandlastcallfunctions(sentence) #print All\n wait.
+printfirstandlastsortedcallfunctions(sentence) #print All\n who
+test = "the quick brown fox jumped over the lazy dog"
+print(test.split(" ")) #print ['the', 'quick', 'brown', 'fox', 'jumped', 'over', 'the', 'lazy', 'dog']
+print(sorted(test.split(" "))) #print ['brown', 'dog', 'fox', 'jumped', 'lazy', 'over', 'quick', 'the', 'the']
+print(test.split(" ").pop(0)) #print the
+print("Exercise 26:  Congratulations, Take A Test!")
+#file saved exercise26learnpythonthehardway.txt
+print("Exercise 27:  Memorizing Logic")
+'''
+1 != 0 True
+1 != 1 False
+0 != 1 True
+0 != 0 False
+1 == 0 False
+1 == 1 True
+0 == 1 False
+0 == 0 True
+'''
+print("Exercise 28:  Boolean Practice")
+print(True and True) #print True
+print(1 and "top") #print top
+print("top" and 1 and "la") #print la
+print("top" or 1) #print top
+print(1 or "top" or "la") #print 1
+print(False and True) #print False
+print(1==1 and 2==1) #print False
+print("test" == "test") #print True
+print(1==1 and 2!=1) #print True
+print(True and 1==1) #print True
+print(False and 0!=0) #print False
+print(True or 1==1) #print True
+print("test" == "testing") #print False
+print(1!=0 and 2==1) #print False
+print("test" != "testing") #print True
+print("test" == 1) #print False
+print(not (True and False)) #print True
+print(not (1==1 and 0!=1)) #print False
+print(not (10==1 or 1000 == 1000)) #print False
+print(not (1!=10 or 3==4)) #print False
+print(not ("testing" == "testing" and "Zed" == "Cool Guy")) #print True
+print(1==1 and not ("testing"== 1 or 1==0)) #print True
+print("chunky" == "bacon" and not (3==4 or 3==3)) #print False
+print(3==3 and not ("testing" == "testing" or "Python" == "Fun")) #print False
