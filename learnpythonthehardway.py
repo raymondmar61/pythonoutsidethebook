@@ -452,3 +452,61 @@ print(not ("testing" == "testing" and "Zed" == "Cool Guy")) #print True
 print(1==1 and not ("testing"== 1 or 1==0)) #print True
 print("chunky" == "bacon" and not (3==4 or 3==3)) #print False
 print(3==3 and not ("testing" == "testing" or "Python" == "Fun")) #print False
+print("Exercise 29:  What If")
+people = 20
+cats = 30
+dogs = 15
+if people < cats:
+	print("Too many cats!  The world is doomed!") #print Too many cats!  The world is doomed!
+if people > cats:
+	print("Not many cats!  The world is saved!")
+if people < dogs:
+	print("The world is drooled on!")
+if people > dogs:
+	print("The world is dry!") #print The world is dry!
+dogs += 5
+if people >= dogs:
+	print("People are greater than or equal to dogs.") #print People are greater than or equal to dogs.
+if people <= dogs:
+	print("People are less than or equal to dogs.") #print People are less than or equal to dogs.
+if people == dogs:
+	print("People are dogs.") #print People are dogs.
+print("Exercise 30:  Else And If")
+people = 30
+cars = 40
+buses = 15
+if cars > people:
+	print("We should take the cars.") #print We should take the cars.
+elif cars < people:
+	print("We should not take the cars.")
+else:
+	print("We can't decide")
+if buses > cars:
+	print("That's too many buses.")
+elif buses < cars:
+	print("Maybe we could take the buses.") #print Maybe we could take the buses.
+else:
+	print("We still can't decide.")
+if people > buses:
+	print("Alright, let's just take the buses.") #print Alright, let's just take the buses.
+else:
+	print("Find, let's stay home then.")
+print("Exercise 31:  Making Decisions")
+#print("You enter a dark room with two doors.  Do you go through door #1 or door #2?")
+door = int(input("You enter a dark room with two doors.  Do you go through door #1 or door #2? "))
+if door == 1:
+	bear = int(input("There's a giant bear here eating a cheese cake.  What do you do?  1. Take the cake or 2. Scream at the bear? "))
+	if bear == 1:
+		print("The bear eats your face off.  Good job!")
+	elif bear == 2:
+		print("The bear eats your legs off.  Good job!")
+	else:
+		print("Well, doing %s is probably better.  Bear runs away." %bear)
+elif door == 2:
+	insanity = int(input("You stare into the endless abyss at Cthulu's retina.\n1. Blueberries.\n2. Yellow jacket clothespins.\n3. Understanding revolvers yelling melodies. "))
+	if insanity == 1 or insanity == 2:
+		print("Your body survives powered by a mind of jello.  Good job!")
+	else:
+		print("The insanity rots your eyes into a pool of muck.  Good job!")
+else:
+	print("You stumble around and fall on a knife and die.  Good job!")
