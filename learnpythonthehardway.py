@@ -493,9 +493,11 @@ else:
 	print("Find, let's stay home then.")
 print("Exercise 31:  Making Decisions")
 #print("You enter a dark room with two doors.  Do you go through door #1 or door #2?")
-door = int(input("You enter a dark room with two doors.  Do you go through door #1 or door #2? "))
+#door = int(input("You enter a dark room with two doors.  Do you go through door #1 or door #2? "))
+door = 1
 if door == 1:
-	bear = int(input("There's a giant bear here eating a cheese cake.  What do you do?  1. Take the cake or 2. Scream at the bear? "))
+	#bear = int(input("There's a giant bear here eating a cheese cake.  What do you do?  1. Take the cake or 2. Scream at the bear? "))
+	bear = 1
 	if bear == 1:
 		print("The bear eats your face off.  Good job!")
 	elif bear == 2:
@@ -510,3 +512,52 @@ elif door == 2:
 		print("The insanity rots your eyes into a pool of muck.  Good job!")
 else:
 	print("You stumble around and fall on a knife and die.  Good job!")
+print("Exercise 32:  Loops And Lists")
+thecount = [1, 2, 3, 4, 5]
+fruits = ["apples","oranges","pears","apricots"]
+change = [1, "pennies",2,"dimes",3,"quarters"]
+for number in thecount:
+	print("This is count %d" %number) #print This is count 1\n . . . This is count 5
+for fruit in fruits:
+	print("A fruit of type: %s" %fruit) #print A fruit of type: apples\n . . . A fruit of type: apricots
+for i in change:
+	print("I got %r" %i) #print I got 1\n I got 'pennies'\n . . . I got 3\n I got 'quarters'
+addelements = []
+for i in range (0,6):
+	print("Adding {} to the list." .format(i)) #print Adding 0 to the list.\n . . . Adding 5 to the list.
+	addelements.append(i)
+for i in addelements:
+	print("Element was:",i) #print Element was: 0\n . . . Element was: 5
+print("Exercise 33:  While Loops")
+i = 0
+numbers = []
+while i < 6:
+	print("At the top i is %d" %i) 
+	numbers.append(i)
+	i = i + 1
+	print("Numbers now",numbers)
+	print("At the bottom i is %d", i)
+'''
+At the top i is 0
+Numbers now [0]
+At the bottom i is %d 1
+...
+At the top i is 5
+Numbers now [0, 1, 2, 3, 4, 5]
+At the bottom i is %d 6
+'''
+print("The numbers: ")
+for num in numbers:
+	print(num) #print 0\n 1\n 2\n 3\n 4\n 5
+print("Exercise 34:  Accessing Elements Of Lists")
+print("Programmers pull elements out of a lists consistently by an address or an index.  Indices start at zero.  The indices number is a cardinal number.  Human translation is the ordinal number subtract one for the cardinal number; e.g. the third animal in the list is index second.  ordinal == ordered 1st; cardinal == cards at random zero.")
+animals = ["bear","python","peacock","kangaroo","whale","platypus"]
+print("The animal at 1. "+animals[1])
+print("The 3rd animal. "+animals[2])
+print("The 1st animal. "+animals[0])
+print("The animal at 3. "+animals[3])
+print("The 5th animal. "+animals[4])
+print("The animal at 2. "+animals[2])
+print("The 6th animal. "+animals[5])
+print("The animal at 4. "+animals[4])
+
