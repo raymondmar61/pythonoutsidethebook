@@ -560,4 +560,54 @@ print("The 5th animal. "+animals[4])
 print("The animal at 2. "+animals[2])
 print("The 6th animal. "+animals[5])
 print("The animal at 4. "+animals[4])
-
+print("Exercise 35:  Branches And Functions")
+from sys import exit
+def goldroom():
+	try:
+		howmuchgold = int(input("This room is full of gold.  How much do you take? "))
+	except ValueError:
+		dead("Man, learn to type a number.  Learn to type an integer.")
+	else:
+		if howmuchgold < 50:
+			print("Nice, you're not greedy, you win")
+			exit(0)
+		else:
+			dead("You greedy bastard!")
+def bearroom():
+	print("There is a bear here.\nThe bear has a bunch of honey.\nThe fat bear is in front of another door.")
+	bearmoved = False
+	while True:
+		nextmove = input("How are you going to move the bear?  take honey, taunt bear, open door? ")
+		if nextmove == "take honey":
+			dead("The bear looks at you then slaps your face off.")
+		elif nextmove == "taunt bear" and not bearmoved:
+			print("The bear has moved from the door.  You can go through now.")
+			bearmoved = True
+		elif nextmove == "taunt bear" and bearmoved:
+			dead("The bear gets pissed off and chews your leg off.")
+		elif nextmove == "open door" and bearmoved:
+			goldroom()
+		else:
+			dead("I got no idea what that means")
+def cthulhuroom():
+	print("Here your see the great evil Cthulhu.\nHe, it, whatever stares at you and you go insane.")
+	nextmove = input("Do you flee for your life or eat your head?  flee or head? ")
+	if nextmove == "flee":
+		start()
+	elif nextmove == "head":
+		dead("Well that was tasty!")
+	else:
+		cthulhuroom()
+def dead(why):
+	print(why+" Good job!")
+	exit(0)
+def start():
+	print("You are in a dark room.\nThere is a door to your right and left.")
+	nextmove = input("Which one do you take?  right or left? ")
+	if nextmove == "left":
+		bearroom()
+	elif nextmove == "right":
+		cthulhuroom()
+	else:
+		dead("You stumble around the room until you starve.")
+start()
