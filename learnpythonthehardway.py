@@ -610,4 +610,26 @@ def start():
 		cthulhuroom()
 	else:
 		dead("You stumble around the room until you starve.")
-start()
+#start()
+print("Exercise 36:  Designing And Debugging")
+print("Use a while-loop to loop forever, and that means probably never.  However, sometimes rules are broken.")
+print("Use a for-loop for all other kinds especially a fixed or limited number loops.")
+print("Exercise 37:  Symbol Review")
+print("Exercise 38:  Doing Things To Lists")
+tenthings = "Apples Oranges Crows Telephone Light Sugar"
+print("Wait, there's not 10 things in that list, let's fix that.")
+stuff = tenthings.split(" ")
+print(stuff) #print ['Apples', 'Oranges', 'Crows', 'Telephone', 'Light', 'Sugar']
+morestuff = ["Day","Night","Song","Frisbee","Corn","Banana","Girl","Boy"]
+while len(stuff) != 10:
+	nextone = morestuff.pop()  #pop() removes the last indexed item in a list
+	print("Adding",nextone)
+	stuff.append(nextone)
+	print("There's %d items now." %len(stuff))
+print("There we got:",stuff) #print There we got: ['Apples', 'Oranges', 'Crows', 'Telephone', 'Light', 'Sugar', 'Boy', 'Girl', 'Banana', 'Corn']
+print(stuff[1]) #print Oranges
+print(stuff[-1]) #print Corn
+print(" ".join(stuff)) #print Apples Oranges Crows Telephone Light Sugar Boy Girl Banana Corn
+print(stuff.pop()) #print Corn
+print(" ".join(stuff)) #print Apples Oranges Crows Telephone Light Sugar Boy Girl Banana
+print("#".join(stuff[3:5])) #print Telephone#Light
