@@ -633,3 +633,64 @@ print(" ".join(stuff)) #print Apples Oranges Crows Telephone Light Sugar Boy Gir
 print(stuff.pop()) #print Corn
 print(" ".join(stuff)) #print Apples Oranges Crows Telephone Light Sugar Boy Girl Banana
 print("#".join(stuff[3:5])) #print Telephone#Light
+print("Exercise 39:  Dictionaries, Oh Lovely Dictionaries")
+stuff = {"name":"Zed", "age":36, "height":6*12+2}
+print(stuff["name"]) #print Zed
+print(stuff["age"]) #print 26
+print(stuff["height"]) #print 74
+stuff["city"] = "San Francisco"
+print(stuff) #print {'name': 'Zed', 'age': 36, 'height': 74, 'city': 'San Francisco'}
+stuff[1] = "Wow"
+stuff[2] = "Neato"
+print(stuff) #print {'name': 'Zed', 'age': 36, 'height': 74, 'city': 'San Francisco', 1: 'Wow', 2: 'Neato'}
+del stuff["city"]
+del stuff[1]
+del stuff[2]
+print(stuff) #print {'name': 'Zed', 'age': 36, 'height': 74}
+states = {"Oregon":"OR", "Florida":"FL", "California":"CA", "New York":"NY", "Michigan":"MI"}
+cities = {"CA":"San Francisco", "MI":"Detroit", "FL":"Jacksonville"}
+cities["NY"] = "New York"
+cities["OR"] = "Portland"
+print("NY State has: ", cities["NY"]) #print NY State has:  New York
+print("OR State has: ", cities["OR"]) #print OR State has:  Portland
+print("Michigan's abbreviation is: ",states["Michigan"]) #print Michigan's abbreviation is:  MI
+print("Florida's abbreviation is: ",states["Florida"]) #print Florida's abbreviation is:  FL
+print("Michigan has: ",cities[states["Michigan"]]) #print Michigan has:  Detroit
+print("Florida has: ",cities[states["Florida"]]) #print Florida has:  Jacksonville
+for state, abbrev in states.items():
+	print("%s is abbreviated  %s " % (state, abbrev))
+	'''
+Oregon is abbreviated  OR 
+Florida is abbreviated  FL 
+California is abbreviated  CA 
+New York is abbreviated  NY 
+Michigan is abbreviated  MI 
+'''
+for abbrev, city in cities.items():
+	print("%s has the city %s" %(abbrev, city))
+'''
+CA has the city San Francisco
+MI has the city Detroit
+FL has the city Jacksonville
+NY has the city New York
+OR has the city Portland
+'''
+for state, abbrev in states.items():
+	print("%s state is abbreviated %s and has city %s" %(state, abbrev, cities[abbrev]))
+'''
+Oregon state is abbreviated OR and has city Portland
+Florida state is abbreviated FL and has city Jacksonville
+California state is abbreviated CA and has city San Francisco
+New York state is abbreviated NY and has city New York
+Michigan state is abbreviated MI and has city Detroit
+'''
+state = states.get("Texas", "No Texas")
+print(state) #print No Texas
+texascity = cities.get("TX","Doesn't exist")
+print(texascity) #print Doesn't exist
+print("The city for the state TX is: %s" %texascity) #print The city for the state TX is: Doesn't exist
+cities["TX"] = "Austin"
+texascity = cities.get("TX","Doesn't exist")
+print(texascity) #print Austin
+print("The city for the state TX is: %s" %texascity) #print The city for the state TX is: Austin
+
