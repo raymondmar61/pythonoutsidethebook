@@ -273,3 +273,12 @@ for key, value in nouns.items():
 		tallylist.append("nothing")
 tallylistcounter = Counter(tallylist)
 print(tallylistcounter) #print Counter({'>0': 2, '>20': 1, '>50': 1, '>2': 1})
+
+#Matplotlib Tutorial (Part 2)_ Bar Charts and Analyzing Data from CSVs [720p]
+programminglanguages = Counter()
+programminglanguages.update(["Python","JavaScript"])
+print(programminglanguages) #print Counter({'Python': 1, 'JavaScript': 1})
+programminglanguages.update(["C++","Python"])
+print(programminglanguages) #print Counter({'Python': 2, 'JavaScript': 1, 'C++': 1})
+programminglanguages.update(["C++","Python"])
+print(programminglanguages) #print Counter({'Python': 3, 'C++': 2, 'JavaScript': 1})
