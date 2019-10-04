@@ -693,4 +693,57 @@ cities["TX"] = "Austin"
 texascity = cities.get("TX","Doesn't exist")
 print(texascity) #print Austin
 print("The city for the state TX is: %s" %texascity) #print The city for the state TX is: Austin
-
+print("Exercise 40: Modules, Classes, And Objects")
+mystuff = {"apple":"I am apples"}
+print(mystuff["apple"]) #print I am apples
+import mystuff #RM:  file mystuff.py
+mystuff.apple() #print I am apples.  apple() function from mystuff.py python file.
+print(mystuff.tangerine) #print Living reflection of a dream.  RM:  tangerine = "Living reflection of a dream" defined in mystuff.py python file.
+thing = mystuff.MyStuff() #MyStuff() class is in mystuff.py python file
+thing.apple() #return I am classy applies in class MyStuff from mystuff.py python file.
+print(thing.tangerine) #print And now a thousand years between
+class Song(object):
+	def __init__(self, lyrics):
+		self.lyrics = lyrics
+	def singmeasong(self):
+		for eachlyrics in self.lyrics:
+			print(eachlyrics)
+happybirthdaylyrics = ["Happy birthday to you","I don't want to get sued","So I'll stop right there"]
+happybirthday = Song(happybirthdaylyrics)
+happybirthday.singmeasong() #return Happy birthday to you\n I don't want to get sued\n So I'll stop right there
+bullsonparadelyrics = ["They rally around the family","With pockets full of shells"]
+bullsonparade = Song(bullsonparadelyrics)
+bullsonparade.singmeasong() #return They rally around the family\n With pockets full of shells
+print("Exercise 41:  Learning To Speak Object Oriented")
+classworddrill = "Tell python to make a new kind of thing."
+objectworddrill = "Two meanings:  the most basic kind of thing and any instance of some thing."
+instanceworddrill = "What you get when you tell Python to create a class."
+defworddrill = "How you define a function inside a class."
+selfworddrill = "Inside a functions in a class, self is a variable for the instance/object being accessed."
+inheritanceworddrill = "The concept that one class can inherit traits from another class, much like you and your parents."
+compositionworddrill = "The concept that a class can be composed of other classes as parts, much like how a car has wheels."
+attributeworddrill = "A property classes have that are from composition and are usually variables."
+isaworddrill = "A phase to say that something inherits from another, as in a salmon is-a fish."
+hasaworddrill = "A phase to say that something is composed of other things or has a trait, as in a salmon has-a mouth."
+class X1(object):
+	def __init__(self):
+		pass
+	def printsomething(self):
+		print("Make a class named X1 that is-an object.")
+class X2(object):
+	def __init__(self, J):
+		self.jparameter = J
+	def printsomething2(self):
+		print("Class X2 has-a __init__ that takes self and J parameters.",self.jparameter)
+class X3(object):
+	def M(self, J):
+		self.J = J
+		print("Class X3 has-a function named M that takes self and J parameters.",self.J)
+foo = X1() #set foo to an instance of class X1.
+foo.printsomething() #return Make a class named X1 that is-an object.
+foo2 = X2("Jam")
+foo2.printsomething2() #return Class X2 has-a __init__ that takes self and J parameters. Jam
+foo3 = X3() #from foo3 get the M function and call it with parameters self, J in class X3.
+foo3.M("Jelly") #return Class X3 has-a function named M that takes self and J parameters. Jelly
+foo.K = X3 #from foo.K get the K attribute and set it to X3.
+#start page 124 Combined Drills
