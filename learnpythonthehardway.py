@@ -741,9 +741,119 @@ class X3(object):
 		print("Class X3 has-a function named M that takes self and J parameters.",self.J)
 foo = X1() #set foo to an instance of class X1.
 foo.printsomething() #return Make a class named X1 that is-an object.
+fooreturnmakeaclassnamedX1again = X1()
+fooreturnmakeaclassnamedX1again.printsomething() #return Make a class named X1 that is-an object.
 foo2 = X2("Jam")
 foo2.printsomething2() #return Class X2 has-a __init__ that takes self and J parameters. Jam
 foo3 = X3() #from foo3 get the M function and call it with parameters self, J in class X3.
 foo3.M("Jelly") #return Class X3 has-a function named M that takes self and J parameters. Jelly
 foo.K = X3 #from foo.K get the K attribute and set it to X3.
-#start page 124 Combined Drills
+print("Exercise 42:  Is-A, Has-A, Objects, and Classes")
+class Animal(object):
+	pass
+class Dog(Animal):
+	def __init__(self, name):
+		self.name = name
+	def printdogname(self):
+		print(self.name+" is from class Dog(Animal).")
+class Cat(Animal):
+	def __init__(self, name):
+		self.name = name
+# class Employee(Person):
+# 	def __init__(self, name, salary):
+# 		super(Employee, self).__init__(name)
+# 		#self.name = name
+# 		self.salary = salary
+class Fish(object):
+	pass
+class Salmon(Fish):
+	pass
+class Halibut(Fish):
+	pass
+rover = Dog("Rover")
+rover.printdogname() #return Rover is from class Dog(Animal).
+# satan = Cat("Satan")
+# mary = Person("Mary")
+# mary.pet = satan
+# frank = Employee("Frank", 120000)
+# frank.pet = rover
+flipper = Fish()
+crouse = Salmon()
+harry = Halibut()
+print("Exercise 43:  Basic Object Oriented Analysis And Design")
+print("Exercise 44:  Inheritance Vs. Composition")
+#Inheritance indicates one class get most or all of its features from a parent class.  E.g. class Foo(Bar) make a class Foo which inherits from Bar.  Any instances of Foo also works of Bar.  Actions on the child imply an action on the parent.  Actions on the child override the action on the parent.  Actions on the child alter the action on the parent.
+class Parent(object):
+	def implicit(self):
+		print("Parent implicit()")
+class Child(Parent):
+	#Child(Parent) inherits all behavior from Parent(object); e.g. if you put functions in a base class or parent class Parent(object) then all subclasses class Child(Parent) get the functions.
+	pass
+dad = Parent()
+son = Child()
+dad.implicit() #return Parent implicit()
+son.implicit() #return Parent implicit()
+class Parent(object):
+	def override(self):
+		print("Parent override()")
+class Child(Parent):
+	#Child(Parent) has its own override(self) function.  son is an instance of Child or son = Child().  Child(Parent) overrides override(self) function.
+	def override(self):
+		print("Child override()")
+dad = Parent()
+son = Child()
+dad.override() #return Parent override()
+son.override() #return Child override()
+class Parent(object):
+	def altered(self):
+		print("Parent altered()")
+class Child(Parent):
+	def altered(self):
+		print("Child before parent altered()")
+		super(Child, self).altered() #get the Parent altered() from Parent(object) calling the altered() function
+		print("Child after parent altered()")
+dad = Parent()
+son = Child()
+dad.altered() #return Parent altered()
+son.altered() #return Child before parent altered()\n Parent altered()\n Child after parent altered()
+class Parent(object):
+	def override(self):
+		print("Parent override()")
+	def implicit(self):
+		print("Parent implicit()")
+	def altered(self):
+		print("Parent altered()")
+class Child(Parent):
+	def override(self):
+		print("Child override()")
+	def altered(self):
+		print("Child before parent altered()")
+		super(Child, self).altered()
+		print("Child after parent altered()")
+dad = Parent()
+son = Child()
+dad.implicit() #return Parent implicit()
+son.implicit() #return Parent implicit()
+dad.override() #return Parent override()
+son.override() #return Child override()
+dad.altered() #return Parent altered()
+son.altered() #return Child before parent altered()\n Parent altered()\n Child after parent altered()
+class Parent(object):
+	def override(self):
+		print("Parent override()")
+class Child(Parent):
+	def __init__(self, stuff):
+		self.stuff = stuff
+	def possession(self):
+		print(self.stuff)
+	def superwhat(self):
+		super(Child, self).__init__()  #RM:  I don't know the purpose of super(Child, self).__init__().  The most common use of super() is actually in __init__ functions in base classes. This is usually the only place where you need to do some things in a child, then complete the initialization in the parent.
+		super(Child, self).override()
+dad = Parent()
+dad.override() #return Parent override()
+son = Child("pampers")
+son.possession() #return pampers
+son.override() #return Parent override()
+son.superwhat() #return Parent override()
+#RM:  skipped Composition pages 146-148.
+#RM:  Satisifed skipped final exercises 45-52 because their projects game, input from browser, advanced user input.
