@@ -164,3 +164,49 @@ pivotletterhundreds = list(zip(*letterhundreds))
 print(pivotletterhundreds) #print [('a', 'b', 'c', 'd'), (232, 343, 543, 23)]
 print(pivotletterhundreds[0]) #print ('a', 'b', 'c', 'd')
 print(list(pivotletterhundreds[0])) #print ['a', 'b', 'c', 'd']
+
+#Python Implementing _zip_ with list comprehensions — Reuven Lerner.pdf https://lerner.co.il/2016/08/30/implementing-zip-list-comprehensions/
+#Python 2’s “zip” returns a list, but Python 3’s “zip” returns an iterator object or <zip object at . . . >
+#Use zip for string and tuples
+sletters = "abcde"
+tnumbers = (1, 2, 3, 4, 5)
+tnumbersoneless = (1, 2, 3, 4)
+umore = ("jack","sack","tack","back","pack")
+print(zip(sletters, tnumbers)) #print <zip object at 0x7f66c7048b08>
+print(list(zip(sletters, tnumbers))) #print [('a', 1), ('b', 2), ('c', 3), ('d', 4), ('e', 5)]
+print(list(zip(sletters, tnumbersoneless))) #print [('a', 1), ('b', 2), ('c', 3), ('d', 4)]
+print(list(zip(sletters, tnumbers, umore))) #print [('a', 1, 'jack'), ('b', 2, 'sack'), ('c', 3, 'tack'), ('d', 4, 'back'), ('e', 5, 'pack')]
+#Lists to dictionaries
+names = ["Tom", "Dick", "Harry"]
+ages = [50, 35, 60]
+print(dict(zip(names, ages))) #print {'Tom': 50, 'Dick': 35, 'Harry': 60}
+from itertools import repeat
+def zip_longest(*args, fillvalue="put fillvalue here"):
+    # zip_longest('ABCD', 'xy', fillvalue='-') --> Ax By C- D-
+    iterators = [iter(it) for it in args]
+    num_active = len(iterators)
+    if not num_active:
+        return
+    while True:
+        values = []
+        for i, it in enumerate(iterators):
+            try:
+                value = next(it)
+            except StopIteration:
+                num_active -= 1
+                if not num_active:
+                    return
+                iterators[i] = repeat(fillvalue) #repeat() function is from the itertools module
+                value = fillvalue
+            values.append(value)
+        yield tuple(values)
+print(zip_longest(sletters, tnumbersoneless)) #print <generator object zip_longest at 0x7fe1faac9a98>
+print(zip(zip_longest(sletters, tnumbersoneless))) #print <zip object at 0x7f6a2b8e64c8>
+print(list(zip_longest(sletters, tnumbersoneless))) #print [('a', 1), ('b', 2), ('c', 3), ('d', 4), ('e', 'put fillvalue here')]
+#Zip in list comprehension
+sletterstnumbers = [(sletters[i], tnumbers[i]) for i in range(0,len(sletters))]
+print(sletterstnumbers) #print [('a', 1), ('b', 2), ('c', 3), ('d', 4), ('e', 5)]
+#Author wanted to create a function to clean things up
+def shortest_sequence_range(*args):
+	return range(len(sorted(args, key=len)[0]))
+print([(sletters[i], tnumbers[i]) for i in shortest_sequence_range(sletters, tnumbers)]) #print [('a', 1), ('b', 2), ('c', 3), ('d', 4), ('e', 5)]
